@@ -18,7 +18,7 @@
 # dependencies.
 
 FROM ubuntu:15.10
-MAINTAINER Mobile Innovation Lab (IBM)
+MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to create a Linux environment with the latest Swift binaries."
 
 # Variables
