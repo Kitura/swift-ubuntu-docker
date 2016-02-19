@@ -1,2 +1,4 @@
 # Swift Ubuntu v15.10 - Docker
-This repo contains the Dockerfile for creating the Swift Ubuntu Docker image our development team uses for development and testing of Swift applications on the Linux Ubuntu (v15.10) OS.
+Docker image with the the latest Swift binaries (DEVELOPMENT-SNAPSHOT-2016-02-08-a)
+and its dependencies. Our development team uses this image for development
+and testing of Swift applications on the Linux Ubuntu (v15.10) OS.
