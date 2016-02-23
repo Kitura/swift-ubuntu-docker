@@ -61,11 +61,6 @@ RUN tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
-# Clone and install libdispatch
-#RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
-# Using forked version as an interim solution (pull request in progress)
-RUN git clone -b opaque-pointer git://github.com/seabaylea/swift-corelibs-libdispatch
-RUN cd swift-corelibs-libdispatch && sh ./autogen.sh && ./configure && make && make install
-
-# Add module map file for libdispatch
-ADD module.modulemap /usr/local/include/dispatch
+# Clone and install swift-corelibs-libdispatch
+RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
+RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
