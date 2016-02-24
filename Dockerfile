@@ -33,6 +33,10 @@ WORKDIR ${WORK_DIR}
 
 # Linux OS dependencies
 RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
+RUN apt-get clean -y
 RUN apt-get install -y libhttp-parser-dev
 RUN apt-get install -y libcurl4-openssl-dev
 RUN apt-get install -y libcurl4-gnutls-dev
