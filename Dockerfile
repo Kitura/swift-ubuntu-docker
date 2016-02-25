@@ -55,6 +55,9 @@ RUN apt-get install -y vim
 RUN apt-get install -y wget
 RUN apt-get install -y telnet
 
+# Set environment variables for image
+ENV LD_LIBRARY_PATH=/usr/local/lib
+
 # Install Swift compiler
 RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 RUN tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
