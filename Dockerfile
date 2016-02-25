@@ -18,13 +18,14 @@
 # dependencies.
 
 FROM ubuntu:15.10
-MAINTAINER IBM Swift Engineering at IBM Cloud
-LABEL Description="Image to create a Linux environment with the latest Swift binaries."
+MAINTAINER boostcode
+LABEL Description="Image to create a Linux environment with the latest Swift binaries for Kitura based projects."
 
 # Variables
 ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a
 ENV UBUNTU_VERSION ubuntu15.10
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1510
+ENV PCRE2_VERSION pcre2-10.20
 ENV HOME /root
 ENV WORK_DIR /root
 
@@ -33,6 +34,10 @@ WORKDIR ${WORK_DIR}
 
 # Linux OS dependencies
 RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
+RUN apt-get clean -y
 RUN apt-get install -y libhttp-parser-dev
 RUN apt-get install -y libcurl4-openssl-dev
 RUN apt-get install -y libcurl4-gnutls-dev
@@ -64,3 +69,17 @@ RUN swiftc -h
 # Clone and install swift-corelibs-libdispatch
 RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
 RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
+
+# Install PCRE2
+RUN wget http://ftp.exim.org/pub/pcre/$PCRE2_VERSION.tar.gz
+RUN tar xzvf $PCRE2_VERSION.tar.gz
+RUN cd $PCRE2_VERSION && ./configure && make && make install
+
+# Set LD_LIBRARY
+ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
+
+# Add mount volume
+VOLUME /data/swift
+
+# Expose port locally
+EXPOSE 8090
