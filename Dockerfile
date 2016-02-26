@@ -22,7 +22,7 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Image to create a Linux environment with the latest Swift binaries."
 
 # Variables
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-02-08-a
+ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-02-25-a
 ENV UBUNTU_VERSION ubuntu15.10
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1510
 ENV HOME /root
