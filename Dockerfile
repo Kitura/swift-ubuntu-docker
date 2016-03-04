@@ -69,9 +69,9 @@ RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
 RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
 
 # Clone and build Swift Package Manager
-RUN git clone -b master https://github.com/apple/swift-package-manager.git
-RUN ./swift-package-manager/Utilities/bootstrap --prefix $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr install
+#RUN git clone -b master https://github.com/apple/swift-package-manager.git
+#RUN ./swift-package-manager/Utilities/bootstrap --prefix $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr install
 
 # Download and build XCTest
-RUN git clone https://github.com/apple/swift-corelibs-xctest
-RUN ./swift-corelibs-xctest/build_script.py --swiftc="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/bin/swiftc" --build-dir="/tmp/XCTest_build" --library-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/lib/swift/linux" --module-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT-$UBUNTU_VERSION}/usr/lib/swift/linux/x86_64"
+#RUN git clone https://github.com/apple/swift-corelibs-xctest
+#RUN ./swift-corelibs-xctest/build_script.py --swiftc="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/bin/swiftc" --build-dir="/tmp/XCTest_build" --library-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/lib/swift/linux" --module-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT-$UBUNTU_VERSION}/usr/lib/swift/linux/x86_64"
