@@ -19,27 +19,25 @@
 
 FROM ubuntu:15.10
 MAINTAINER IBM Swift Engineering at IBM Cloud
-LABEL Description="Image to create a Linux environment with the latest Swift binaries."
+LABEL Description="Linux Ubuntu image with the latest Swift binaries."
 
-# Variables
+# Set environment variables for image
 ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-03-01-a
 ENV UBUNTU_VERSION ubuntu15.10
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1510
 ENV HOME /root
 ENV WORK_DIR /root
+#ENV LD_LIBRARY_PATH=/usr/local/lib
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
-# Linux OS dependencies
+# Linux OS utils
 RUN apt-get update
-RUN apt-get install -y libhttp-parser-dev
-RUN apt-get install -y libcurl4-openssl-dev
 RUN apt-get install -y libcurl4-gnutls-dev
 RUN apt-get install -y gcc-4.8
 RUN apt-get install -y g++-4.8
 RUN apt-get install -y libcurl3
-RUN apt-get install -y libhiredis-dev
 RUN apt-get install -y libkqueue-dev
 RUN apt-get install -y openssh-client
 RUN apt-get install -y automake
@@ -54,9 +52,6 @@ RUN apt-get install -y libblocksruntime-dev
 RUN apt-get install -y vim
 RUN apt-get install -y wget
 RUN apt-get install -y telnet
-
-# Set environment variables for image
-ENV LD_LIBRARY_PATH=/usr/local/lib
 
 # Install Swift compiler
 RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
