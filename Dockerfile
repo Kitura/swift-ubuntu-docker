@@ -46,6 +46,7 @@ RUN apt-get install -y git
 RUN apt-get install -y build-essential
 RUN apt-get install -y libtool
 RUN apt-get install -y clang
+RUN apt-get install -y libicu-dev
 RUN apt-get install -y curl
 RUN apt-get install -y libglib2.0-dev
 RUN apt-get install -y libblocksruntime-dev
