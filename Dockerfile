@@ -61,9 +61,11 @@ ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
 # Clone and install swift-corelibs-libdispatch
-# TODO: RESTORE LIBDISPATCH build
-#RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
-#RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
+RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
+# Interim solution to address defects in libdispatch
+ADD dispatch.h $WORK_DIR/swift-corelibs-libdispatch/dispatch
+ADD configure.ac $WORK_DIR/swift-corelibs-libdispatch/
+RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
 
 # Clone and build Swift Package Manager
 #RUN git clone -b master https://github.com/apple/swift-package-manager.git
