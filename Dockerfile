@@ -22,7 +22,7 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu image with the latest Swift binaries."
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-03-01-a
+ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-03-24-a
 ENV UBUNTU_VERSION ubuntu15.10
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1510
 ENV HOME /root
@@ -62,6 +62,9 @@ RUN swiftc -h
 
 # Clone and install swift-corelibs-libdispatch
 RUN git clone https://github.com/apple/swift-corelibs-libdispatch.git
+# Interim solution to address defects in libdispatch
+ADD dispatch.h $WORK_DIR/swift-corelibs-libdispatch/dispatch
+ADD configure.ac $WORK_DIR/swift-corelibs-libdispatch/
 RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
 
 # Clone and build Swift Package Manager
