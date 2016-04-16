@@ -17,14 +17,14 @@
 # Dockerfile to build a Docker image with the latest Swift binaries and its
 # dependencies.
 
-FROM ubuntu:15.10
+FROM ubuntu:14.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
-LABEL Description="Linux Ubuntu image with the latest Swift binaries."
+LABEL Description="Linux Ubuntu 14 image with the latest Swift binaries."
 
 # Set environment variables for image
 ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-04-12-a
-ENV UBUNTU_VERSION ubuntu15.10
-ENV UBUNTU_VERSION_NO_DOTS ubuntu1510
+ENV UBUNTU_VERSION ubuntu14.04
+ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
 ENV WORK_DIR /root
 #ENV LD_LIBRARY_PATH=/usr/local/lib
@@ -67,7 +67,3 @@ RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update 
 # Clone and build Swift Package Manager
 #RUN git clone -b master https://github.com/apple/swift-package-manager.git
 #RUN ./swift-package-manager/Utilities/bootstrap --prefix $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr install
-
-# Download and build XCTest
-#RUN git clone https://github.com/apple/swift-corelibs-xctest
-#RUN ./swift-corelibs-xctest/build_script.py --swiftc="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/bin/swiftc" --build-dir="/tmp/XCTest_build" --library-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT}-${UBUNTU_VERSION}/usr/lib/swift/linux" --module-install-path="${WORK_DIR}/${SWIFT_SNAPSHOT-$UBUNTU_VERSION}/usr/lib/swift/linux/x86_64"
