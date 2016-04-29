@@ -29,8 +29,8 @@ case $i in
     linuxVersion="${i#*=}"
     shift # past argument=value
     ;;
-    --sourceFolder=*)
-    sourceFolder="${i#*=}"
+    --outputFolder=*)
+    outputFolder="${i#*=}"
     shift # past argument=value
     ;;
     *)
@@ -39,13 +39,9 @@ case $i in
 esac
 done
 
-#tmp
-container=3495d31626b8
-swiftVersion=swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
-linuxVersion=ubuntu15.10
-outputFolder=/Users/olivieri/tmp/newtest
-
 # Variables
+#swiftVersion=swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+#linuxVersion=ubuntu14.04
 sourceFolder=$swiftVersion-$linuxVersion
 
 echo
