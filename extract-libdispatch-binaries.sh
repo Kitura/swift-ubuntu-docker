@@ -80,11 +80,10 @@ for line in `docker diff $container`; do
 done)
 
 echo "Finished extracting libdispatch binaries."
-tarFileName=$swiftVersion-libdispatch.tar.gz
-
 echo
+
+tarFileName=$swiftVersion-libdispatch.tar.gz
 echo "Creating $tarFileName file..."
-#tarFileName="${sourceFolder##*${sourceFolder}}"
 cd $outputFolder && tar -cvzf $tarFileName *
 echo "Finished creating '$tarFileName' in $outputFolder."
 # Untarring file
