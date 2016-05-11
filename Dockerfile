@@ -32,22 +32,40 @@ ENV WORK_DIR /root
 WORKDIR ${WORK_DIR}
 
 # Linux OS dependencies
-RUN apt-get update && \
-  apt-get install -y libpython2.7 libcurl4-gnutls-dev gcc-4.8 g++-4.8 libcurl3 \
-  libkqueue-dev openssh-client automake libbsd-dev git build-essential libtool \
-  clang libicu-dev curl libglib2.0-dev libblocksruntime-dev wget && \
-  apt-get clean
+RUN apt-get update && apt-get install -y \
+  automake \
+  build-essential \
+  clang \
+  curl \
+  gcc-4.8 \
+  git \
+  g++-4.8 \
+  libblocksruntime-dev \
+  libbsd-dev \
+  libcurl4-gnutls-dev \
+  libcurl3 \
+  libglib2.0-dev \
+  libicu-dev \
+  libkqueue-dev \
+  libpython2.7 \
+  libtool \
+  openssh-client \
+  wget \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Swift compiler
-RUN wget -nv https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz && \
-  tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz && \
-  rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
+RUN wget -nv https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
 # Clone and install swift-corelibs-libdispatch
-RUN git clone -b experimental/foundation https://github.com/apple/swift-corelibs-libdispatch.git && \
-  cd swift-corelibs-libdispatch && git submodule init && \
-  git submodule update && sh ./autogen.sh && \
-  ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && \
-  make && make install
+RUN git clone -b experimental/foundation https://github.com/apple/swift-corelibs-libdispatch.git \
+  && cd swift-corelibs-libdispatch \
+  && git submodule init \
+  && git submodule update \
+  && sh ./autogen.sh \
+  && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr \
+  && make \
+  && make install
