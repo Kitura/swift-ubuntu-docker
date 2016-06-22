@@ -33,26 +33,26 @@ ENV WORK_DIR /root
 WORKDIR ${WORK_DIR}
 
 # Linux OS utils
-RUN apt-get update
-RUN apt-get install -y libcurl4-gnutls-dev
-RUN apt-get install -y gcc-4.8
-RUN apt-get install -y g++-4.8
-RUN apt-get install -y libcurl3
-RUN apt-get install -y libkqueue-dev
-RUN apt-get install -y openssh-client
-RUN apt-get install -y automake
-RUN apt-get install -y libbsd-dev
-RUN apt-get install -y git
-RUN apt-get install -y build-essential
-RUN apt-get install -y libtool
-RUN apt-get install -y clang
-RUN apt-get install -y libicu-dev
-RUN apt-get install -y curl
-RUN apt-get install -y libglib2.0-dev
-RUN apt-get install -y libblocksruntime-dev
-RUN apt-get install -y vim
-RUN apt-get install -y wget
-RUN apt-get install -y telnet
+RUN apt-get update && apt-get install -y \
+  automake \
+  build-essential \
+  clang \
+  curl \
+  gcc-4.8 \
+  git \
+  g++-4.8 \
+  libblocksruntime-dev \
+  libbsd-dev \
+  libcurl4-gnutls-dev \
+  libcurl3 \
+  libglib2.0-dev \
+  libpython2.7 \
+  libicu-dev \
+  libkqueue-dev \
+  libtool \
+  openssh-client \
+  wget \
+  binutils-gold
 
 # Install Swift compiler
 RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
