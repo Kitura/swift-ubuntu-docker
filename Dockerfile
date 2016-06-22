@@ -60,6 +60,9 @@ RUN tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
+#Horrible hack to force usage of the gold linker
+RUN rm /usr/bin/ld && ln -s /usr/bin/ld.gold /usr/bin/ld
+
 # Clone and install swift-corelibs-libdispatch
 RUN git clone -b experimental/foundation https://github.com/apple/swift-corelibs-libdispatch.git
 RUN cd swift-corelibs-libdispatch && git submodule init && git submodule update && sh ./autogen.sh && CFLAGS=-fuse-ld=gold ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr && make && make install
