@@ -40,8 +40,10 @@ esac
 done
 
 # Variables
-#swiftVersion=swift-DEVELOPMENT-SNAPSHOT-2016-04-25-a
+#container=fb5e2fd45218
+#swiftVersion=swift-DEVELOPMENT-SNAPSHOT-2016-06-06-a
 #linuxVersion=ubuntu14.04
+#outputFolder=/Users/olivieri/tmp/libdispatch
 sourceFolder=$swiftVersion-$linuxVersion
 
 echo
