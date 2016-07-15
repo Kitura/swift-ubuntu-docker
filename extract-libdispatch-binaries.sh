@@ -14,6 +14,8 @@
 # limitations under the License.
 ##
 
+# Utility script used for extracting libdispatch binaries from the Docker container.
+
 for i in "$@"
 do
 case $i in
