@@ -50,8 +50,14 @@ RUN apt-get update && apt-get install -y \
   libkqueue-dev \
   libtool \
   openssh-client \
+  vim \
   wget \
   binutils-gold
+
+ADD .vim /root/.vim
+ADD .vimrc /root
+
+RUN echo "set -o vi" >> /root/.bashrc
 
 # Install Swift compiler
 RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
