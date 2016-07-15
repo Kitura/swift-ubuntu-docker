@@ -7,7 +7,7 @@ Docker image with the Swift binaries (DEVELOPMENT-SNAPSHOT-2016-06-06-a) and dep
 2. Reduced size of the Docker image.
 3. Updated Dockerfile per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
-# Privilege Mode
+# Privilege mode
 If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privilege mode:
 
 ```
