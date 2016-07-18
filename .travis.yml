@@ -5,6 +5,8 @@
 # https://docs.travis-ci.com/user/docker/
 # https://docs.travis-ci.com/user/multi-os/
 
+language: generic
+
 # whitelist (branches that should be built)
 branches:
   only:
@@ -21,8 +23,4 @@ services: docker
 
 before_install:
   - docker build -t swift-ubuntu:latest .
-  - docker images
-
-script:
-  echo ">>build complete.  See above steps for details"
 
