@@ -22,5 +22,10 @@ sudo: required
 services: docker
 
 before_install:
-  - docker build -t swift-ubuntu:latest .
+  - docker build --pull -t ibmcom/swift-ubuntu:latest .
 
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e="$DOCKERHUB_EMAIL" -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
+    docker push ibmcom/swift-ubuntu:latest;
+    fi
