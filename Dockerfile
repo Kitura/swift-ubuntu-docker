@@ -55,7 +55,7 @@ RUN apt-get update && apt-get install -y \
   binutils-gold
 
 ADD .vim /root/.vim
-ADD .vimrc /root
+ADD .vimrc /root/.vimrc
 
 RUN echo "set -o vi" >> /root/.bashrc
 
