@@ -1,4 +1,4 @@
-[![Build Status - Develop](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker.svg?branch=travis_setup)](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker)
+[![Build Status - Develop](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker.svg?branch=develop)](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker)
 
 # Swift 3 - Ubuntu v14.04 - Docker
 
