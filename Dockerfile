@@ -43,14 +43,17 @@ RUN apt-get update && apt-get install -y \
   libblocksruntime-dev \
   libbsd-dev \
   libcurl4-gnutls-dev \
+  libcurl4-openssl-dev \
   libcurl3 \
   libglib2.0-dev \
   libpython2.7 \
   libicu-dev \
   libkqueue-dev \
+  libssl-dev \
   libtool \
   lsb-core \
   openssh-client \
+  openssl \
   vim \
   wget \
   binutils-gold
