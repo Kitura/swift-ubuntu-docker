@@ -12,6 +12,7 @@ branches:
   only:
     - master
     - develop
+    - testing
 
 notifications:
   slack:
