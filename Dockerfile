@@ -42,7 +42,6 @@ RUN apt-get update && apt-get install -y \
   g++-4.8 \
   libblocksruntime-dev \
   libbsd-dev \
-  libcurl3 \
   libglib2.0-dev \
   libpython2.7 \
   libicu-dev \
@@ -72,8 +71,6 @@ RUN swiftc -h
 
 #Hack to force usage of the gold linker
 RUN rm /usr/bin/ld && ln -s /usr/bin/ld.gold /usr/bin/ld
-
-RUN lsb_release -a
 
 # Clone and install swift-corelibs-libdispatch
 RUN git clone -b $LIBDISPATCH_BRANCH https://github.com/apple/swift-corelibs-libdispatch.git \
