@@ -42,7 +42,6 @@ RUN apt-get update && apt-get install -y \
   g++-4.8 \
   libblocksruntime-dev \
   libbsd-dev \
-  libcurl4-gnutls-dev \
   libcurl3 \
   libglib2.0-dev \
   libpython2.7 \
@@ -53,9 +52,7 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   vim \
   wget \
-  binutils-gold
-
-RUN apt-get update && apt-get install -y \
+  binutils-gold \
   libcurl4-openssl-dev \
   openssl \
   libssl-dev
