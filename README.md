@@ -2,7 +2,7 @@
 
 # Swift 3 - Ubuntu v14.04 - Docker
 
-Docker image with the Swift binaries (DEVELOPMENT-SNAPSHOT-2016-06-06-a) and dependencies. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
+Docker image with the Swift binaries (DEVELOPMENT-SNAPSHOT-2016-06-20-a) and dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
 
 # Recent updates
 1. Aligned version of Ubuntu with version found in Cloud Foundry environments (14.04).
