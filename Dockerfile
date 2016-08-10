@@ -21,12 +21,12 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image with the Swift binaries."
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-06-20-a
+ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-08-07-a
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
 ENV WORK_DIR /root
-ENV LIBDISPATCH_BRANCH experimental/foundation
+ENV LIBDISPATCH_BRANCH master
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
@@ -35,7 +35,7 @@ WORKDIR ${WORK_DIR}
 RUN apt-get update && apt-get install -y \
   automake \
   build-essential \
-  clang \
+  clang-3.8 \
   curl \
   gcc-4.8 \
   git \
