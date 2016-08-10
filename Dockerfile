@@ -31,11 +31,16 @@ ENV LIBDISPATCH_BRANCH master
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
+RUN apt-get update && apt-get install -y wget
+RUN wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+RUN echo "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.9 main" >> /etc/apt/sources.list
+
 # Linux OS utils
 RUN apt-get update && apt-get install -y \
   automake \
   build-essential \
-  clang-3.8 \
+  clang-3.9 \
+  lldb-3.9 \
   curl \
   gcc-4.8 \
   git \
@@ -56,7 +61,6 @@ RUN apt-get update && apt-get install -y \
   openssl \
   libssl-dev
 
-
 ADD .vim /root/.vim
 ADD .vimrc /root/.vimrc
 
@@ -69,9 +73,14 @@ RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNA
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
-#Hack to force usage of the gold linker
+# Hack to force usage of the gold linker
 RUN rm /usr/bin/ld && ln -s /usr/bin/ld.gold /usr/bin/ld
 
+ENV CC /usr/bin/clang-3.9
+ENV CXX /usr/bin/clang-3.9
+
+# http://askubuntu.com/questions/735201/installing-clang-3-8-on-ubuntu-14-04-3/735220
+# http://apt.llvm.org/
 # Clone and install swift-corelibs-libdispatch
 RUN git clone -b $LIBDISPATCH_BRANCH https://github.com/apple/swift-corelibs-libdispatch.git \
   && cd swift-corelibs-libdispatch \
