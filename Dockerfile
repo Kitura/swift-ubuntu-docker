@@ -78,6 +78,8 @@ RUN rm /usr/bin/ld && ln -s /usr/bin/ld.gold /usr/bin/ld
 
 ENV CC /usr/bin/clang-3.9
 ENV CXX /usr/bin/clang-3.9
+ENV OBJC /usr/bin/clang-3.9
+ENV OBJCXX /usr/bin/clang-3.9
 
 # http://askubuntu.com/questions/735201/installing-clang-3-8-on-ubuntu-14-04-3/735220
 # http://apt.llvm.org/
@@ -87,6 +89,6 @@ RUN git clone -b $LIBDISPATCH_BRANCH https://github.com/apple/swift-corelibs-lib
   && git submodule init \
   && git submodule update \
   && sh ./autogen.sh \
-  && CFLAGS=-fuse-ld=gold ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr \
+  && ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr \
   && make \
   && make install
