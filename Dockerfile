@@ -40,18 +40,15 @@ RUN apt-get update && apt-get install -y \
   gcc-4.8 \
   git \
   g++-4.8 \
-  libblocksruntime-dev \
   libbsd-dev \
   libglib2.0-dev \
   libpython2.7 \
   libicu-dev \
-  libkqueue-dev \
   libtool \
   lsb-core \
   openssh-client \
   vim \
   wget \
-  binutils-gold \
   libcurl4-openssl-dev \
   openssl \
   libssl-dev
