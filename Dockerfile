@@ -51,7 +51,8 @@ RUN apt-get update && apt-get install -y \
   wget \
   libcurl4-openssl-dev \
   openssl \
-  libssl-dev
+  libssl-dev \
+  uuid-dev
 
 ADD .vim /root/.vim
 ADD .vimrc /root/.vimrc
