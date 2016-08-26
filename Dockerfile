@@ -21,7 +21,7 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image with the Swift binaries."
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-07-25-a
+ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
@@ -56,7 +56,6 @@ RUN apt-get update && apt-get install -y \
   openssl \
   libssl-dev
 
-
 ADD .vim /root/.vim
 ADD .vimrc /root/.vimrc
 
@@ -68,16 +67,3 @@ RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNA
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
-
-#Hack to force usage of the gold linker
-RUN rm /usr/bin/ld && ln -s /usr/bin/ld.gold /usr/bin/ld
-
-# Clone and install swift-corelibs-libdispatch
-RUN git clone -b $LIBDISPATCH_BRANCH https://github.com/apple/swift-corelibs-libdispatch.git \
-  && cd swift-corelibs-libdispatch \
-  && git submodule init \
-  && git submodule update \
-  && sh ./autogen.sh \
-  && CFLAGS=-fuse-ld=gold ./configure --with-swift-toolchain=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr --prefix=$WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr \
-  && make \
-  && make install
