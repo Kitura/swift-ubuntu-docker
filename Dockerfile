@@ -21,7 +21,7 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image with the Swift binaries."
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-08-25-a
+ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-08-26-a
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
