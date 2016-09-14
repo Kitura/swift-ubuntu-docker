@@ -21,7 +21,7 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image with the Swift binaries."
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-DEVELOPMENT-SNAPSHOT-2016-08-31-a
+ENV SWIFT_SNAPSHOT swift-3.0-RELEASE
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
@@ -60,7 +60,7 @@ ADD .vimrc /root/.vimrc
 RUN echo "set -o vi" >> /root/.bashrc
 
 # Install Swift compiler
-RUN wget https://swift.org/builds/development/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
