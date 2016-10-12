@@ -5,10 +5,11 @@
 Docker image with the Swift 3.0 RELEASE binaries and dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
 
 # Recent updates
-1. Upgraded Dockerfile to the Swift 3.0 RELEASE binaries.
-2. Aligned version of Ubuntu with version found in Cloud Foundry environments (14.04).
-3. Reduced size of the Docker image.
-4. Updated Dockerfile per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+1. Removed packages from Dockerfile no longer needed.
+2. Upgraded Dockerfile to the Swift 3.0 RELEASE binaries.
+3. Aligned version of Ubuntu with version found in Cloud Foundry environments (14.04).
+4. Reduced size of the Docker image.
+5. Updated Dockerfile per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 # Pull this image from Docker Hub
 You can execute the following command to download the latest version of this image from Docker Hub:
