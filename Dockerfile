@@ -33,29 +33,13 @@ WORKDIR ${WORK_DIR}
 
 # Linux OS utils
 RUN apt-get update && apt-get install -y \
-  automake \
   build-essential \
   clang \
-  curl \
-  gcc-4.8 \
   git \
-  g++-4.8 \
-  libbsd-dev \
-  libglib2.0-dev \
   libpython2.7 \
   libicu-dev \
-  libtool \
-  lsb-core \
-  openssh-client \
-  vim \
   wget \
-  libcurl4-openssl-dev \
-  openssl \
-  libssl-dev \
-  uuid-dev
-
-ADD .vim /root/.vim
-ADD .vimrc /root/.vimrc
+  libcurl4-openssl-dev
 
 RUN echo "set -o vi" >> /root/.bashrc
 
