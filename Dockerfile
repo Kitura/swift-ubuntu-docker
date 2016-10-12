@@ -39,7 +39,11 @@ RUN apt-get update && apt-get install -y \
   libpython2.7 \
   libicu-dev \
   wget \
-  libcurl4-openssl-dev
+  libcurl4-openssl-dev \
+  vim
+
+ADD .vim /root/.vim
+ADD .vimrc /root/.vimrc
 
 RUN echo "set -o vi" >> /root/.bashrc
 
