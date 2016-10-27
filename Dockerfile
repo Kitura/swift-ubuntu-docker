@@ -31,7 +31,7 @@ ENV WORK_DIR /root
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
-# Linux OS utils
+# Linux OS utils and libraries
 RUN apt-get update && apt-get install -y \
   build-essential \
   clang \
@@ -53,3 +53,21 @@ RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_D
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
 ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
+
+# Security & hardening
+# For details on resolving reported vulnerabilities, see:
+# https://console.ng.bluemix.net/docs/containers/container_security_image.html#container_security_image
+RUN sed -i 's/^.*PASS_MAX_DAYS.*$/PASS_MAX_DAYS\t90/' /etc/login.defs && \
+  sed -i 's/^.*PASS_MIN_DAYS.*$/PASS_MIN_DAYS\t1/' /etc/login.defs && \
+  sed -i 's/^.*PASS_MIN_LEN.*$/PASS_MIN_LEN\t>=\ 8/' /etc/login.defs && \
+  sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password
+
+# See following URL for details: http://tldp.org/LDP/lfs/LFS-BOOK-6.1.1-HTML/chapter06/pwdgroup.html
+RUN touch /var/run/utmp /var/log/{btmp,lastlog,wtmp}
+RUN chgrp -v utmp /var/run/utmp /var/log/lastlog
+RUN chmod -v 664 /var/run/utmp /var/log/lastlog
+
+# See following URL for details: http://www.deer-run.com/~hal/sysadmin/pam_cracklib.html
+RUN touch /etc/security/opasswd
+RUN chown root:root /etc/security/opasswd
+RUN chmod 600 /etc/security/opasswd
