@@ -55,9 +55,12 @@ ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 RUN swiftc -h
 
 # Security & hardening
+# For details on resolving reported vulnerabilities, see:
+# https://console.ng.bluemix.net/docs/containers/container_security_image.html#container_security_image
 RUN sed -i 's/^.*PASS_MAX_DAYS.*$/PASS_MAX_DAYS\t90/' /etc/login.defs && \
   sed -i 's/^.*PASS_MIN_DAYS.*$/PASS_MIN_DAYS\t1/' /etc/login.defs && \
-  sed -i 's/^.*PASS_MIN_LEN.*$/PASS_MIN_LEN\t>=\ 8/' /etc/login.defs
+  sed -i 's/^.*PASS_MIN_LEN.*$/PASS_MIN_LEN\t>=\ 8/' /etc/login.defs && \
+  sed -i 's/sha512/sha512 minlen=8/' /etc/pam.d/common-password
 
 # See following URL for details: http://tldp.org/LDP/lfs/LFS-BOOK-6.1.1-HTML/chapter06/pwdgroup.html
 RUN touch /var/run/utmp /var/log/{btmp,lastlog,wtmp}
