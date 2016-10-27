@@ -56,8 +56,8 @@ RUN swiftc -h
 
 # Security & hardening
 RUN sed -i 's/^.*PASS_MAX_DAYS.*$/PASS_MAX_DAYS\t90/' /etc/login.defs && \
-    sed -i 's/^.*PASS_MIN_DAYS.*$/PASS_MIN_DAYS\t1/' /etc/login.defs && \
-    sed -i 's/^.*PASS_MIN_LEN.*$/PASS_MIN_LEN\t>=\ 8/' /etc/login.defs &&
+  sed -i 's/^.*PASS_MIN_DAYS.*$/PASS_MIN_DAYS\t1/' /etc/login.defs && \
+  sed -i 's/^.*PASS_MIN_LEN.*$/PASS_MIN_LEN\t>=\ 8/' /etc/login.defs
 
 # See following URL for details: http://tldp.org/LDP/lfs/LFS-BOOK-6.1.1-HTML/chapter06/pwdgroup.html
 RUN touch /var/run/utmp /var/log/{btmp,lastlog,wtmp}
