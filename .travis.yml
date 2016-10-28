@@ -1,5 +1,4 @@
-# Travis CI build file for Kitura sample app.
-# Kitura runs on OS X and Linux (Ubuntu).
+# Travis CI build file for swift-ubuntu image.
 # See the following URLs for further details on Travis CI
 # https://docs.travis-ci.com/user/customizing-the-build/
 # https://docs.travis-ci.com/user/docker/
@@ -24,8 +23,7 @@ script:
   - docker build --pull -t ibmcom/swift-ubuntu:latest .
 
 after_success:
-  - echo ">> In after success"
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -e="$DOCKERHUB_EMAIL" -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
+    docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
     docker push ibmcom/swift-ubuntu:latest;
     fi
