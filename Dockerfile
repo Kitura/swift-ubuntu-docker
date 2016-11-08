@@ -32,7 +32,7 @@ ENV WORK_DIR /root
 WORKDIR ${WORK_DIR}
 
 # Linux OS utils and libraries
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   build-essential \
   clang \
   git \
