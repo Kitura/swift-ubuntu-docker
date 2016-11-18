@@ -34,13 +34,17 @@ WORKDIR ${WORK_DIR}
 # Linux OS utils and libraries
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   build-essential \
-  clang \
+  clang-3.8 \
   git \
   libpython2.7 \
   libicu-dev \
   wget \
   libcurl4-openssl-dev \
   vim
+
+# Set clang 3.8 as default
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 100
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 100
 
 ADD .vim /root/.vim
 ADD .vimrc /root/.vimrc
