@@ -31,7 +31,7 @@ After executing the above command, you will have terminal access to the Docker c
 If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privilege mode:
 
 ```
-docker run --privileged -i -t ibmcom/swift-ubuntu:latest  /bin/bash
+docker run --privileged -i -t ibmcom/swift-ubuntu:latest /bin/bash
 ```
 
 This issue is described at https://bugs.swift.org/browse/SR-54.
