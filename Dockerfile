@@ -32,7 +32,7 @@ ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
-# Linux OS utils and libraries
+# Linux OS utils and libraries and set clang 3.8 as default
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   build-essential \
   clang-3.8 \
@@ -42,10 +42,8 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   wget \
   libcurl4-openssl-dev \
   vim \
-  && apt-get clean
-
-# Set clang 3.8 as default
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 100 \
+  && apt-get clean \
+  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 100 \
   && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 100
 
 ADD .vim /root/.vim
