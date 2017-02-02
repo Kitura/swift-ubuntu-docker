@@ -33,7 +33,7 @@ ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 WORKDIR ${WORK_DIR}
 
 # Linux OS utils and libraries and set clang 3.8 as default
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   build-essential \
   clang-3.8 \
   git \
