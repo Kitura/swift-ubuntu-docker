@@ -18,6 +18,8 @@ FROM ibmcom/ubuntu:14.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image for execution of Swift applications."
 
+USER root
+
 # Set environment variables for image
 ENV SWIFT_SNAPSHOT swift-3.0.2-RELEASE
 ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.0.2-release
@@ -25,7 +27,7 @@ ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
 ENV WORK_DIR /root
-ENV LD_LIBRARY_PATH /root/swift-lib:$LD_LIBRARY_PATH
+#ENV LD_LIBRARY_PATH /root/swift-lib:$LD_LIBRARY_PATH
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
@@ -38,9 +40,9 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   && apt-get clean \
   && wget -q https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux \
-  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz && mkdir -p /root/swift-lib \
-  && cp $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux/*.so /root/swift-lib \
-  && rm -rf $SWIFT_SNAPSHOT-$UBUNTU_VERSION \
+  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+  && find $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux -type f ! -name '*.so' -delete \
+  && rm -rf $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux/*/ \
   && apt-get remove -y gcc cpp sgml-base icu-devtools gcc-4.8 cpp-4.8 libc6-dev binutils manpages-dev manpages wget pkg-config perl \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
