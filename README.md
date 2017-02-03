@@ -42,7 +42,7 @@ docker run --privileged -i -t ibmcom/swift-ubuntu:latest /bin/bash
 This issue is described at https://bugs.swift.org/browse/SR-54.
 
 # ibmcom/swift-ubuntu-runtime
-## Pulling ibmcom/swift-ubuntu from Docker Hub
+## Pulling ibmcom/swift-ubuntu-runtime from Docker Hub
 You can execute the following command to download the latest version of the `ibmcom/swift-ubuntu-runtime` image from Docker Hub:
 
 ```
