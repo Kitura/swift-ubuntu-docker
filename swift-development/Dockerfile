@@ -21,6 +21,8 @@ FROM ibmcom/ubuntu:14.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 14.04 image with the Swift binaries and tools."
 
+USER root
+
 # Set environment variables for image
 ENV SWIFT_SNAPSHOT swift-3.0.2-RELEASE
 ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.0.2-release
