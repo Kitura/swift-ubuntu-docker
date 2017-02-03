@@ -50,10 +50,11 @@ docker pull ibmcom/swift-ubuntu-runtime:latest
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
-You can extend the `ibmcom/swift-ubuntu-runtime` image in your own Dockerfile to add your Swift application binaries (and any other dependencies you may need). For instance, the next sample Dockerfile simply adds the binaries for the Kitura-Starter application and specifies the command to start the server (total image size after adding the Kitura-Starter binaries is ~300MB):
+You can extend the `ibmcom/swift-ubuntu-runtime` image in your own Dockerfile to add your Swift application binaries (and any other dependencies you may need). For instance, the next sample Dockerfile simply adds the binaries for the [Kitura-Starter](https://github.com/IBM-Bluemix/Kitura-Starter) application and specifies the command to start the server (total image size after adding the Kitura-Starter binaries is ~300MB):
 
 ```
 # Builds a Docker image for running the Kitura-Starter sample application.
+
 ...
 
 FROM ibmcom/swift-ubuntu-runtime:latest
@@ -64,8 +65,8 @@ USER root
 # Expose default port for Kitura
 EXPOSE 8080
 
-RUN mkdir /root/Kitura-Starter
 # Binaries should have been compiled against the correct platform (i.e. Ubuntu 14.04).
+RUN mkdir /root/Kitura-Starter
 ADD .build/debug/Kitura-Starter /root/Kitura-Starter
 ADD .build/debug/*.so /root/Kitura-Starter
 CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter” ]
