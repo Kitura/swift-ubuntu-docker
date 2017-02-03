@@ -22,7 +22,7 @@ services: docker
 
 # after_success failure doesn't fail build: https://github.com/travis-ci/travis-ci/issues/758
 script:
-  - docker build --pull -t ibmcom/ubuntu:14.04 ./ibm-ubuntu
+  - docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu
   - docker build -t ibmcom/swift-ubuntu:latest ./swift-development
   - docker build -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
