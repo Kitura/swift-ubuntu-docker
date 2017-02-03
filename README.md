@@ -5,7 +5,7 @@
 This repo contains the code for generating two Docker images for Swift:
 
 - The `ibmcom/swift-ubuntu` image contains the Swift 3.0.2 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
-- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.0.2 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the common build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
+- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.0.2 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
 
 # Recent updates
 1. Reduced number of layers in images.
@@ -36,7 +36,7 @@ After executing the above command, you will have terminal access to the Docker c
 If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privilege mode:
 
 ```
-docker run --privileged -i -t ibmcom/swift-ubuntu:latest /bin/bash
+docker run --privileged -i -t ibmcom/swift-ubuntu:latest
 ```
 
 This issue is described at https://bugs.swift.org/browse/SR-54.
@@ -50,29 +50,25 @@ docker pull ibmcom/swift-ubuntu-runtime:latest
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
-You can extend this image in your own Dockerfile and add your Swift application binaries to it:
+You can extend the `ibmcom/swift-ubuntu-runtime` image in your own Dockerfile to add your Swift application binaries to it (and any other dependencies you may need). For instance, the next sample Dockerfile simply adds the binaries for the Kitura-Starter application and specifies the command to start the server (total image size after adding the Kitura-Starter binaries is ~300MB):
 
 ```
-# Dockerfile for your app
-
+# Builds a Docker image for running the Kitura-Starter sample application.
 ...
 
 FROM ibmcom/swift-ubuntu-runtime:latest
+LABEL Description="Docker image for running the Kitura-Starter sample application."
 
-...
+USER root
 
-# Install any additional system packages your Swift app may need
-RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
-  <package-1> \
-  <package-2> \
+# Expose default port for Kitura
+EXPOSE 8080
 
-...
-
-# Add your Swift application binaries
-ADD .build/release <your-app-dir>
-
-...
-
+RUN mkdir /root/Kitura-Starter
+# Binaries should have been compiled against the correct platform (i.e. Ubuntu 14.04).
+ADD .build/debug/Kitura-Starter /root/Kitura-Starter
+ADD .build/debug/*.so /root/Kitura-Starter
+CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter” ]
 ```
 
 For details on how to create an IBM Container to execute a Swift application, please see [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) and [Running Kitura in an IBM Container](https://developer.ibm.com/swift/2016/03/04/running-kitura-in-an-ibm-container/).
