@@ -69,7 +69,7 @@ EXPOSE 8080
 RUN mkdir /root/Kitura-Starter
 ADD .build/debug/Kitura-Starter /root/Kitura-Starter
 ADD .build/debug/*.so /root/Kitura-Starter
-CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter” ]
+CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter" ]
 ```
 
 For details on how to create an IBM Container to execute a Swift application, please see [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) and [Running Kitura in an IBM Container](https://developer.ibm.com/swift/2016/03/04/running-kitura-in-an-ibm-container/).
