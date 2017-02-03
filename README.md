@@ -50,10 +50,14 @@ docker pull ibmcom/swift-ubuntu-runtime:latest
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
-You can extend this image in your own Dockerfile and add your application binaries to it:
+You can extend this image in your own Dockerfile and add your Swift application binaries to it:
 
 ```
-FROM swift-runtime:latest
+# Dockerfile for your app
+
+...
+
+FROM ibmcom/swift-ubuntu-runtime:latest
 
 ...
 
