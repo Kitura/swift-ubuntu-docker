@@ -35,9 +35,6 @@ ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
-ADD .vim /root/.vim
-ADD .vimrc /root/.vimrc
-
 # Linux OS utils and libraries and set clang 3.8 as default
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   build-essential \
@@ -59,5 +56,10 @@ RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_D
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && swiftc -h
+
+# Add utilities
+COPY .vim /root/.vim
+COPY .vimrc /root/.vimrc
+COPY utils /root/utils
 
 CMD /bin/bash
