@@ -20,10 +20,14 @@ notifications:
 sudo: required
 services: docker
 
-# https://github.com/travis-ci/travis-ci/issues/758
+# after_success failure doesn't fail build: https://github.com/travis-ci/travis-ci/issues/758
 script:
-  - docker build --pull -t ibmcom/swift-ubuntu:latest .
+  - docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu
+  - docker build -t ibmcom/swift-ubuntu:latest ./swift-development
+  - docker build -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
       docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
+      docker push ibmcom/ubuntu:14.04;
       docker push ibmcom/swift-ubuntu:latest;
+      docker push ibmcom/swift-ubuntu-runtime:latest;
     fi
