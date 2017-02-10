@@ -16,8 +16,8 @@
 ##
 
 # Compiles, debugs, or runs your Swift app in a Docker container
-
-source ./common-utils.sh
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $dir/common-utils.sh
 
 #----------------------------------------------------------
 function help {
