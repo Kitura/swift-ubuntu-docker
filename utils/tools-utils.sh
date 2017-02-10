@@ -16,7 +16,10 @@
 ##
 
 # Compiles, debugs, or runs your Swift app in a Docker container
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $dir/common-utils.sh
 
+#----------------------------------------------------------
 function help {
   SCRIPT=`basename "$0"`
   cat <<-!!EOF
@@ -27,39 +30,13 @@ function help {
       run                     Runs your project
       debug                   Starts debug server and your program
       test                    Runs test cases
-      install-system-libs     Installs any system libraries from dependencies
 !!EOF
 }
 
 #----------------------------------------------------------
-function init {
-  # Enter the project directory
-  cd $PROJECT_FOLDER
-  echo "Current folder is: `pwd`"
-}
-
-#----------------------------------------------------------
 function debugServer {
-  lldb-server platform --listen *:$DEBUG_PORT &
+  lldb-server platform --listen *:$DEBUG_PORT --server &
   echo "Started debug server on port $DEBUG_PORT."
-}
-
-#----------------------------------------------------------
-function installSystemLibraries {
-
-  # Fetch all of the dependencies
-  echo "Fetching Swift packages"
-  swift package fetch
-
-  echo "Installing system dependencies (if any)..."
-
-  # Update the Package cache
-  sudo apt-get update &> /dev/null
-
-  # Install all the APT dependencies
-  egrep -R "Apt *\(" Packages/*/Package.swift \
-    | sed -e 's/^.*\.Apt *( *" *//' -e 's/".*$//' \
-    | xargs -n 1 sudo apt-get install -y &> /dev/null
 }
 
 #----------------------------------------------------------
@@ -73,12 +50,6 @@ function buildProject {
 function runTests {
   echo "Running tests..."
   swift test
-}
-
-#----------------------------------------------------------
-function run {
-  echo "Running program..."
-  .build/debug/$PROGRAM_NAME
 }
 
 #----------------------------------------------------------
@@ -100,10 +71,9 @@ fi
 
 # Invoke corresponding handler
 case $ACTION in
-"run")                 init && installSystemLibraries && buildProject && run;;
-"build")               init && installSystemLibraries && buildProject;;
-"debug")               init && debugServer && installSystemLibraries && buildProject && run;;
+"run")                 init && buildProject && run;;
+"build")               init && buildProject;;
+"debug")               debugServer && init && buildProject && run;;
 "test")                init && runTests;;
-"install-system-libs") init && installSystemLibraries;;
 *)                     help;;
 esac
