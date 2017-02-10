@@ -23,7 +23,10 @@ source $dir/common-utils.sh
 function help {
   SCRIPT=`basename "$0"`
   cat <<-!!EOF
-    Usage: $SCRIPT <project folder> <program name>
+    Usage: $SCRIPT <project folder> [ run <program name> ]
+
+    Where:
+      run                     Runs your project
 !!EOF
 }
 
@@ -32,10 +35,15 @@ function help {
 # ---------------------------------------------------------
 # Runtime arguments
 PROJECT_FOLDER="$1"
-PROGRAM_NAME="$2"
+ACTION="$2"
+PROGRAM_NAME="$3"
 
 # Validate input arguments
-[[ ( -z $PROJECT_FOLDER ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
+[[ ( -z $PROJECT_FOLDER ) || ( -z $ACTION ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
 
 # Invoke corresponding handler
-init && run
+# Invoke corresponding handler
+case $ACTION in
+"run")                 init && run;;
+*)                     help;;
+esac
