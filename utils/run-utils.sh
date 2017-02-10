@@ -38,4 +38,4 @@ PROGRAM_NAME="$2"
 [[ ( -z $PROJECT_FOLDER ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
 
 # Invoke corresponding handler
-init && buildProject && run
+init && run
