@@ -16,8 +16,6 @@
 ##
 
 # Runs your Swift app in a Docker container
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $dir/common-utils.sh
 
 #----------------------------------------------------------
 function help {

@@ -16,6 +16,12 @@
 ##
 
 #----------------------------------------------------------
+function run {
+  echo "Running program..."
+  .build/debug/$PROGRAM_NAME
+}
+
+#----------------------------------------------------------
 function init {
   # Enter the project directory
   cd $PROJECT_FOLDER
@@ -27,8 +33,10 @@ function init {
 function installSystemLibraries {
 
   # Fetch all of the dependencies
-  echo "Fetching Swift packages"
-  swift package fetch
+  if type "swift" > /dev/null; then
+    echo "Fetching Swift packages"
+    swift package fetch
+  fi
 
   echo "Installing system dependencies (if any)..."
 
@@ -39,10 +47,4 @@ function installSystemLibraries {
   egrep -R "Apt *\(" Packages/*/Package.swift \
     | sed -e 's/^.*\.Apt *( *" *//' -e 's/".*$//' \
     | xargs -n 1 sudo apt-get install -y &> /dev/null
-}
-
-#----------------------------------------------------------
-function run {
-  echo "Running program..."
-  .build/debug/$PROGRAM_NAME
 }
