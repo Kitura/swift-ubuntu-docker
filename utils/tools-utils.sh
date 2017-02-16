@@ -43,7 +43,8 @@ function debugServer {
 function buildProject {
 
   echo "Compiling the project..."
-  swift build
+  echo "Build configuration: $BUILD_CONFIGURATION"
+  swift build --configuration $BUILD_CONFIGURATION
 }
 
 #----------------------------------------------------------
@@ -58,6 +59,7 @@ function runTests {
 # Runtime arguments
 PROJECT_FOLDER="$1"
 ACTION="$2"
+BUILD_CONFIGURATION="$3"
 PROGRAM_NAME="$3"
 DEBUG_PORT="$4"
 
@@ -65,7 +67,9 @@ DEBUG_PORT="$4"
 [[ -z $PROJECT_FOLDER ]] && help && exit 0
 if [[ -z $ACTION ]] ; then
   ACTION="build"
+  BUILD_CONFIGURATION="debug"
 fi
+[ "$ACTION" = "build" ] && [[ -z $BUILD_CONFIGURATION ]] && BUILD_CONFIGURATION="debug"
 [ "$ACTION" = "run" ] && [[ -z $PROGRAM_NAME ]] && help && exit 0
 [ "$ACTION" = "debug" ] && [[ ( -z $PROGRAM_NAME ) || ( -z $DEBUG_PORT ) ]] && help && exit 0
 
