@@ -9,8 +9,8 @@ This repo contains the code for generating two Docker images for Swift:
 
 # Recent updates
 1. Reduced number of layers in images.
-2. Removed packages from Dockerfiles no longer needed.
-3. Upgraded Dockerfiles to the Swift 3.0.2 RELEASE binaries.
+2. Removed system packages no longer needed.
+3. Upgraded to the Swift 3.0.2 RELEASE binaries.
 4. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
 5. Reduced size of the Docker image.
 6. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
@@ -73,3 +73,18 @@ CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter" ]
 ```
 
 For details on how to create an IBM Container to execute a Swift application, please see [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) and [Running Kitura in an IBM Container](https://developer.ibm.com/swift/2016/03/04/running-kitura-in-an-ibm-container/).
+
+# Exposing ports in your Docker container
+Exposing your server's port in a Docker container to the host system (e.g. macOS) is quite easy using the latest version of Docker:
+
+```
+docker run -p <host port>:<container port> [additional options] <image name>
+```
+
+For example, if your Swift server is running on port `8080`, and you want to make it accessible via port `9080` on the host system, you can then execute:
+
+```
+docker run -p 9080:8080 [additional options] <image name>
+```
+
+Port `8080` in the container will then be mapped to port `9080` on the host system. For further details on the `-p` option, see the official Docker [documentation](https://docs.docker.com/engine/reference/run/#/expose-incoming-ports).
