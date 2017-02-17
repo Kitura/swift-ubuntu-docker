@@ -75,7 +75,7 @@ CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter" ]
 For details on how to create an IBM Container to execute a Swift application, please see [10 Steps To Running a Swift App in an IBM Container] (https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) and [Running Kitura in an IBM Container](https://developer.ibm.com/swift/2016/03/04/running-kitura-in-an-ibm-container/).
 
 # Exposing ports in your Docker container
-Exposing your server's port in a Docker container to the host system (e.g. macOS) is quite easy using the latest version of Docker:
+Exposing your server's port running in a Docker container to the host system (e.g. macOS) is quite easy using the latest version of Docker:
 
 ```
 docker run -p <host port>:<container port> [additional options] <image name>
