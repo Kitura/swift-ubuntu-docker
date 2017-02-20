@@ -23,7 +23,7 @@ source $dir/common-utils.sh
 function help {
   SCRIPT=`basename "$0"`
   cat <<-!!EOF
-    Usage: $SCRIPT <project folder> [ build | run <program name> | debug <program name> <debug port> | test ]
+    Usage: $SCRIPT <project folder> [ build <configuration mode> | run <configuration mode> <program name> | debug <program name> <debug port> | test ]
 
     Where:
       build                   Compiles your project
@@ -60,15 +60,23 @@ function runTests {
 PROJECT_FOLDER="$1"
 ACTION="$2"
 BUILD_CONFIGURATION="$3"
-PROGRAM_NAME="$3"
-DEBUG_PORT="$4"
+PROGRAM_NAME="$4"
+DEBUG_PORT="$5"
 
 # Validate input arguments
 [[ -z $PROJECT_FOLDER ]] && help && exit 0
+
 if [[ -z $ACTION ]] ; then
   ACTION="build"
   BUILD_CONFIGURATION="debug"
 fi
+
+if [ "$ACTION" = "debug" ] ; then
+  BUILD_CONFIGURATION="debug"
+  PROGRAM_NAME="$3"
+  DEBUG_PORT="$4"
+fi
+
 [ "$ACTION" = "build" ] && [[ -z $BUILD_CONFIGURATION ]] && BUILD_CONFIGURATION="debug"
 [ "$ACTION" = "run" ] && [[ -z $PROGRAM_NAME ]] && help && exit 0
 [ "$ACTION" = "debug" ] && [[ ( -z $PROGRAM_NAME ) || ( -z $DEBUG_PORT ) ]] && help && exit 0
@@ -77,7 +85,7 @@ fi
 case $ACTION in
 "run")                 init && buildProject && run;;
 "build")               init && buildProject;;
-"debug")               debugServer && init && buildProject && run;;
+"debug")               init && buildProject && run && debugServer;;
 "test")                init && runTests;;
 *)                     help;;
 esac
