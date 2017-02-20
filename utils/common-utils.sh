@@ -25,6 +25,7 @@ function run {
 function init {
   # Enter the project directory
   cd $PROJECT_FOLDER
+  echo "Command is: $ACTION"
   echo "Current folder is: `pwd`"
   installSystemLibraries
 }
