@@ -17,14 +17,14 @@ This repo contains the code for generating two Docker images for Swift:
 
 # ibmcom/swift-ubuntu
 ## Pulling ibmcom/swift-ubuntu from Docker Hub
-You can execute the following command to download the latest version of the `ibmcom/swift-ubuntu` image from Docker Hub:
+Run the following command to download the latest version of the `ibmcom/swift-ubuntu` image from Docker Hub:
 
 ```
 docker pull ibmcom/swift-ubuntu:latest
 ```
 
 ## Using ibmcom/swift-ubuntu for development
-You can mount a folder on your host to your Docker container using the following command:
+Mount a folder on your host to your Docker container using the following command:
 
 ```
 docker run -i -t -v <absolute path to the swift package>:/root/<swift package name> ibmcom/swift-ubuntu:latest
@@ -32,8 +32,8 @@ docker run -i -t -v <absolute path to the swift package>:/root/<swift package na
 
 After executing the above command, you will have terminal access to the Docker container (the default command for the image is `/bin/bash`). This will allow you to build, test, and run your Swift application in a Linux environment (Ubuntu v14.04).
 
-## Privilege mode
-If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privilege mode:
+## Privileged mode
+If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privileged mode:
 
 ```
 docker run --privileged -i -t ibmcom/swift-ubuntu:latest
@@ -43,7 +43,7 @@ This issue is described at https://bugs.swift.org/browse/SR-54.
 
 # ibmcom/swift-ubuntu-runtime
 ## Pulling ibmcom/swift-ubuntu-runtime from Docker Hub
-You can execute the following command to download the latest version of the `ibmcom/swift-ubuntu-runtime` image from Docker Hub:
+Run the following command to download the latest version of the `ibmcom/swift-ubuntu-runtime` image from Docker Hub:
 
 ```
 docker pull ibmcom/swift-ubuntu-runtime:latest
@@ -81,7 +81,7 @@ Exposing your server's port running in a Docker container to the host system (e.
 docker run -p <host port>:<container port> [additional options] <image name>
 ```
 
-For example, if your Swift server is running on port `8080`, and you want to make it accessible via port `9080` on the host system, you can then execute:
+For example, if your Swift server is running on port `8080`, and you want to make it accessible via port `9080` on the host system, run the following command:
 
 ```
 docker run -p 9080:8080 [additional options] <image name>
