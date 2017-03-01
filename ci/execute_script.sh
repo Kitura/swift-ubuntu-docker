@@ -15,6 +15,8 @@
 # limitations under the License.
 ##
 
+set -ev
+
 prefix="ENV SWIFT_SNAPSHOT swift-"
 suffix="-RELEASE"
 
