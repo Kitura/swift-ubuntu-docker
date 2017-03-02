@@ -31,8 +31,8 @@ RUNTIME_VERSION=${RUNTIME_SNAPSHOT//"$suffix"}
 docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu
 docker build -t ibmcom/swift-ubuntu:latest ./swift-development
 docker build -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime
-docker build -t ibmcom/swift-ubuntu:$DEVELOPMENT_VERSION ./swift-development
-docker build -t ibmcom/swift-ubuntu-runtime:$RUNTIME_VERSION ./swift-runtime
+docker tag swift-ubuntu:latest swift-ubuntu:$DEVELOPMENT_VERSION
+docker tag swift-ubuntu-runtime:latest swift-ubuntu-runtime:$RUNTIME_VERSION
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
