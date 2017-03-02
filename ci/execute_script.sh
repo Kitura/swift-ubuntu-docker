@@ -32,11 +32,11 @@ docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu
 docker build -t ibmcom/swift-ubuntu:latest ./swift-development
 docker build -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime
 
-echo ibmcom/swift-ubuntu:$DEVELOPMENT_VERSION;
-echo ibmcom/swift-ubuntu:$RUNTIME_VERSION;
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
   docker push ibmcom/ubuntu:14.04;
   docker push ibmcom/swift-ubuntu:latest;
   docker push ibmcom/swift-ubuntu-runtime:latest;
+  docker push ibmcom/swift-ubuntu:$DEVELOPMENT_VERSION;
+  docker push ibmcom/swift-ubuntu-runtime:$RUNTIME_VERSION;
 fi
