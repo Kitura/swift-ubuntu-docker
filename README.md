@@ -23,6 +23,13 @@ Run the following command to download the latest version of the `ibmcom/swift-ub
 docker pull ibmcom/swift-ubuntu:latest
 ```
 
+### Use a specific version of ibmcom/swift-ubuntu-runtime
+Following the release of Swift 3.0.2, the Docker images are now tagged with Swift version number.  To use the Swift 3.0.2 image from Docker Hub, issue the following command:
+
+```
+docker pull ibmcom/swift-ubuntu-runtime:3.0.2
+```
+
 ## Using ibmcom/swift-ubuntu for development
 Mount a folder on your host to your Docker container using the following command:
 
@@ -47,6 +54,13 @@ Run the following command to download the latest version of the `ibmcom/swift-ub
 
 ```
 docker pull ibmcom/swift-ubuntu-runtime:latest
+```
+
+### Use a specific version of ibmcom/swift-ubuntu-runtime
+Following the release of Swift 3.0.2, the Docker images are now tagged with Swift version number.  To use the Swift 3.0.2 image from Docker Hub, issue the following command:
+
+```
+docker pull ibmcom/swift-ubuntu-runtime:3.0.2
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
