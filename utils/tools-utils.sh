@@ -74,6 +74,10 @@ if [ "$ACTION" = "debug" ] ; then
   DEBUG_PORT="$3"
 fi
 
+if [ "$ACTION" = "run" ] ; then
+  BUILD_CONFIGURATION="debug"
+fi
+
 [ "$ACTION" = "build" ] && [[ -z $BUILD_CONFIGURATION ]] && BUILD_CONFIGURATION="debug"
 [ "$ACTION" = "run" ] && [[ -z $PROGRAM_NAME ]] && help && exit 0
 [ "$ACTION" = "debug" ] && [[ ( -z $PROGRAM_NAME ) || ( -z $DEBUG_PORT ) ]] && help && exit 0

@@ -18,13 +18,16 @@
 #----------------------------------------------------------
 function run {
   echo "Running program..."
-  .build/debug/$PROGRAM_NAME
+  .build/$BUILD_CONFIGURATION/$PROGRAM_NAME
 }
 
 #----------------------------------------------------------
 function init {
-  echo "Current folder is: `pwd`"
-  echo "Command is: $ACTION"
+  echo "Current folder: `pwd`"
+  echo "Command: $ACTION"
+  if ! [[ -z $BUILD_CONFIGURATION ]] ; then
+    echo "Build configuration: $BUILD_CONFIGURATION"
+  fi
   installSystemLibraries
 }
 
