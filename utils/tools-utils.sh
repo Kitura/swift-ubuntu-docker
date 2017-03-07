@@ -57,15 +57,12 @@ function runTests {
 # MAIN
 # ---------------------------------------------------------
 # Runtime arguments
-PROJECT_FOLDER="$1"
-ACTION="$2"
-BUILD_CONFIGURATION="$3"
-PROGRAM_NAME="$4"
-DEBUG_PORT="$5"
+ACTION="$1"
+BUILD_CONFIGURATION="$2"
+PROGRAM_NAME="$3"
+DEBUG_PORT="$4"
 
 # Validate input arguments
-[[ -z $PROJECT_FOLDER ]] && help && exit 0
-
 if [[ -z $ACTION ]] ; then
   ACTION="build"
   BUILD_CONFIGURATION="debug"
@@ -73,8 +70,8 @@ fi
 
 if [ "$ACTION" = "debug" ] ; then
   BUILD_CONFIGURATION="debug"
-  PROGRAM_NAME="$3"
-  DEBUG_PORT="$4"
+  PROGRAM_NAME="$2"
+  DEBUG_PORT="$3"
 fi
 
 [ "$ACTION" = "build" ] && [[ -z $BUILD_CONFIGURATION ]] && BUILD_CONFIGURATION="debug"

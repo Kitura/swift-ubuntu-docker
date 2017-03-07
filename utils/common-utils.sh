@@ -23,10 +23,8 @@ function run {
 
 #----------------------------------------------------------
 function init {
-  # Enter the project directory
-  cd $PROJECT_FOLDER
-  echo "Command is: $ACTION"
   echo "Current folder is: `pwd`"
+  echo "Command is: $ACTION"
   installSystemLibraries
 }
 
@@ -39,10 +37,12 @@ function installSystemLibraries {
     swift package fetch
   fi
 
-  echo "Installing system dependencies (if any)..."
+  echo "Updating system configuration..."
 
   # Update the Package cache
   sudo apt-get update &> /dev/null
+
+  echo "Installing system dependencies (if any)..."
 
   # Install all the APT dependencies
   egrep -R "Apt *\(" Packages/*/Package.swift \
