@@ -34,12 +34,11 @@ function help {
 # MAIN
 # ---------------------------------------------------------
 # Runtime arguments
-PROJECT_FOLDER="$1"
-ACTION="$2"
-PROGRAM_NAME="$3"
+ACTION="$1"
+PROGRAM_NAME="$2"
 
 # Validate input arguments
-[[ ( -z $PROJECT_FOLDER ) || ( -z $ACTION ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
+[[ ( -z $ACTION ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
 
 # Invoke corresponding handler
 # Invoke corresponding handler
