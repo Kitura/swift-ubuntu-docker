@@ -18,7 +18,7 @@
 #----------------------------------------------------------
 function run {
   echo "Running program..."
-  .build/$BUILD_CONFIGURATION/$PROGRAM_NAME
+  .build/$BUILD_CONFIGURATION/$PROGRAM_NAME &
 }
 
 #----------------------------------------------------------
