@@ -82,7 +82,7 @@ fi
 case $ACTION in
 "run")                 init && buildProject && run;;
 "build")               init && buildProject;;
-"debug")               init && buildProject && run && debugServer;;
+"debug")               init && buildProject && debugServer && run;;
 "test")                init && runTests;;
 *)                     help;;
 esac
