@@ -36,6 +36,7 @@ function help {
 # Runtime arguments
 ACTION="$1"
 PROGRAM_NAME="$2"
+BUILD_CONFIGURATION="release"
 
 # Validate input arguments
 [[ ( -z $ACTION ) || ( -z $PROGRAM_NAME ) ]] && help && exit 0
