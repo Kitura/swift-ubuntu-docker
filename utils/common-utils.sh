@@ -15,10 +15,12 @@
 # limitations under the License.
 ##
 
+BUILD_DIR=".build-docker"
+
 #----------------------------------------------------------
 function run {
   echo "Running program..."
-  .build/$BUILD_CONFIGURATION/$PROGRAM_NAME &
+  $BUILD_DIR/$BUILD_CONFIGURATION/$PROGRAM_NAME &
 }
 
 #----------------------------------------------------------
