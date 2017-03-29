@@ -44,7 +44,7 @@ function buildProject {
 
   echo "Compiling the project..."
   echo "Build configuration: $BUILD_CONFIGURATION"
-  swift build --configuration $BUILD_CONFIGURATION
+  swift build --configuration $BUILD_CONFIGURATION --build-path $BUILD_DIR
 }
 
 #----------------------------------------------------------
