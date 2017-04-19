@@ -40,8 +40,11 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   && apt-get clean \
   && wget -q https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
      https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && wget -q -O - https://swift.org/keys/all-keys.asc | \
-     gpg --import - \
+  && gpg --keyserver hkp://pool.sks-keyservers.net \
+      --recv-keys \
+      '7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD' \
+      '1BE1 E29A 084C B305 F397  D62A 9F59 7F4D 21A5 6D5F' \
+      'A3BA FD35 56A5 9079 C068  94BD 63BC 1CFE 91D3 06C6' \
   && gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys  \
   && gpg --verify $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux \
