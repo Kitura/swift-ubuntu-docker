@@ -15,8 +15,6 @@
 # limitations under the License.
 ##
 
-BUILD_DIR=".build-docker"
-
 #----------------------------------------------------------
 function run {
   echo "Running program..."
@@ -30,6 +28,9 @@ function init {
   if ! [[ -z $BUILD_CONFIGURATION ]] ; then
     echo "Build configuration: $BUILD_CONFIGURATION"
   fi
+  BUILD_DIR=$PWD/.build-ubuntu
+  mkdir -p $BUILD_DIR
+  echo "Build folder: $BUILD_DIR"
   installSystemLibraries
 }
 
