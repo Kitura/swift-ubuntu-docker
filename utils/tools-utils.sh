@@ -35,8 +35,10 @@ function help {
 
 #----------------------------------------------------------
 function debugServer {
-  lldb-server platform --listen *:$DEBUG_PORT --server &
-  echo "Started debug server on port $DEBUG_PORT."
+  MIN_SEVER_PORT=$(( DEBUG_PORT + 1 ))
+  MAX_SEVER_PORT=$(( MIN_SEVER_PORT + 1 ))
+  lldb-server platform --port-offset=$PORT --listen *:$DEBUG_PORT --min-gdbserver-port $MIN_SEVER_PORT --max-gdbserver-port $MAX_SEVER_PORT --server &
+  echo "Started debug server on port $DEBUG_PORT (min-gdbserver-port: $MIN_SEVER_PORT, max-gdbserver-port: $MAX_SEVER_PORT)."
 }
 
 #----------------------------------------------------------
