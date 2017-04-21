@@ -86,9 +86,9 @@ fi
 
 # Invoke corresponding handler
 case $ACTION in
-"run")                 init && buildProject && run;;
+"run")                 init && run;;
 "build")               init && buildProject;;
-"debug")               init && buildProject && debugServer && run;;
+"debug")               init && debugServer && run;;
 "test")                init && runTests;;
 *)                     help;;
 esac
