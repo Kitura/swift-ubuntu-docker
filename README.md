@@ -4,13 +4,13 @@
 
 This repo contains the code for generating two Docker images for Swift:
 
-- The `ibmcom/swift-ubuntu` image contains the Swift 3.1 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
-- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.1 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
+- The `ibmcom/swift-ubuntu` image contains the Swift 3.1.1 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
+- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.1.1 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
 
 # Recent updates
-1. Reduced number of layers in images.
-2. Removed system packages no longer needed.
-3. Upgraded to the Swift 3.1 RELEASE binaries.
+1. Upgraded to the Swift 3.1.1 RELEASE binaries.
+2. Reduced number of layers in images.
+3. Removed system packages no longer needed.
 4. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
 5. Reduced size of the Docker image.
 6. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
@@ -24,10 +24,10 @@ docker pull ibmcom/swift-ubuntu:latest
 ```
 
 ### Use a specific version of ibmcom/swift-ubuntu
-Docker images are now tagged with Swift version number. To use the Swift 3.1 image from Docker Hub, issue the following command:
+Docker images are now tagged with Swift version number. To use the Swift 3.1.1 image from Docker Hub, issue the following command:
 
 ```
-docker pull ibmcom/swift-ubuntu:3.1
+docker pull ibmcom/swift-ubuntu:3.1.1
 ```
 
 ## Using ibmcom/swift-ubuntu for development
@@ -57,10 +57,10 @@ docker pull ibmcom/swift-ubuntu-runtime:latest
 ```
 
 ### Use a specific version of ibmcom/swift-ubuntu-runtime
-Docker images are now tagged with Swift version number. To use the Swift 3.1 image from Docker Hub, issue the following command:
+Docker images are now tagged with Swift version number. To use the Swift 3.1.1 image from Docker Hub, issue the following command:
 
 ```
-docker pull ibmcom/swift-ubuntu-runtime:3.1
+docker pull ibmcom/swift-ubuntu-runtime:3.1.1
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
