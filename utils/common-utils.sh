@@ -31,7 +31,8 @@ function init {
   BUILD_DIR=$PWD/.build-ubuntu
   mkdir -p $BUILD_DIR
   echo "Build folder: $BUILD_DIR"
-  installSystemLibraries
+  # Skipping invocation of installSystemLibraries() method for now...
+  # installSystemLibraries
 }
 
 #----------------------------------------------------------
