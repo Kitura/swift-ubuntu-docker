@@ -35,8 +35,10 @@ function help {
 
 #----------------------------------------------------------
 function debugServer {
-  lldb-server platform --listen *:$DEBUG_PORT --server &
-  echo "Started debug server on port $DEBUG_PORT."
+  MIN_SEVER_PORT=$(( DEBUG_PORT + 1 ))
+  MAX_SEVER_PORT=$(( MIN_SEVER_PORT + 1 ))
+  lldb-server platform --port-offset=$DEBUG_PORT --listen *:$DEBUG_PORT --min-gdbserver-port $MIN_SEVER_PORT --max-gdbserver-port $MAX_SEVER_PORT --server &
+  echo "Started debug server on port $DEBUG_PORT (min-gdbserver-port: $MIN_SEVER_PORT, max-gdbserver-port: $MAX_SEVER_PORT)."
 }
 
 #----------------------------------------------------------
@@ -84,9 +86,9 @@ fi
 
 # Invoke corresponding handler
 case $ACTION in
-"run")                 init && buildProject && run;;
+"run")                 init && run;;
 "build")               init && buildProject;;
-"debug")               init && buildProject && debugServer && run;;
+"debug")               init && debugServer && run;;
 "test")                init && runTests;;
 *)                     help;;
 esac

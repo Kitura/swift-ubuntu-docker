@@ -21,8 +21,8 @@ LABEL Description="Linux Ubuntu 14.04 image for execution of Swift applications.
 USER root
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-3.1-RELEASE
-ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.1-release
+ENV SWIFT_SNAPSHOT swift-3.1.1-RELEASE
+ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.1.1-release
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV HOME /root
