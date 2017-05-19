@@ -35,6 +35,10 @@ function help {
 
 #----------------------------------------------------------
 function debugServer {
+  # Updating ptrace_scope, requires running container in privilege mode
+  # We should look into creating an apparmor profile at some point...
+  # https://docs.docker.com/engine/security/apparmor/
+  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
   MIN_SEVER_PORT=$(( DEBUG_PORT + 1 ))
   MAX_SEVER_PORT=$(( MIN_SEVER_PORT + 1 ))
   lldb-server platform --port-offset=$DEBUG_PORT --listen *:$DEBUG_PORT --min-gdbserver-port $MIN_SEVER_PORT --max-gdbserver-port $MAX_SEVER_PORT --server &
@@ -43,7 +47,6 @@ function debugServer {
 
 #----------------------------------------------------------
 function buildProject {
-
   echo "Compiling the project..."
   echo "Build configuration: $BUILD_CONFIGURATION"
   swift build --configuration $BUILD_CONFIGURATION --build-path $BUILD_DIR
