@@ -25,9 +25,7 @@ ENV SWIFT_SNAPSHOT swift-3.1.1-RELEASE
 ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.1.1-release
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
-ENV HOME /root
-ENV WORK_DIR /root
-#ENV LD_LIBRARY_PATH /root/swift-lib:$LD_LIBRARY_PATH
+ENV WORK_DIR /
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
@@ -47,11 +45,12 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
       'A3BA FD35 56A5 9079 C068  94BD 63BC 1CFE 91D3 06C6' \
   && gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys  \
   && gpg --verify $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux \
+  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux --strip-components=1 \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && find $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux -type f ! -name '*.so' -delete \
-  && rm -rf $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux/*/ \
+  && find /usr/lib/swift/linux -type f ! -name '*.so' -delete \
+  && rm -rf /usr/lib/swift/linux/*/ \
+  && chmod -R go+r /usr/lib/swift \
   && apt-get remove -y gcc cpp sgml-base icu-devtools gcc-4.8 cpp-4.8 libc6-dev binutils manpages-dev manpages wget pkg-config perl \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
