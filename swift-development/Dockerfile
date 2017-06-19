@@ -28,9 +28,7 @@ ENV SWIFT_SNAPSHOT swift-3.1.1-RELEASE
 ENV SWIFT_SNAPSHOT_LOWERCASE swift-3.1.1-release
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
-ENV HOME /root
-ENV WORK_DIR /root
-ENV PATH $WORK_DIR/$SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/bin:$PATH
+ENV WORK_DIR /
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
@@ -61,10 +59,11 @@ RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_D
       'A3BA FD35 56A5 9079 C068  94BD 63BC 1CFE 91D3 06C6' \
   && gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys  \
   && gpg --verify $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz --strip-components=1 \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && swiftc -h
+  && chmod -R go+r /usr/lib/swift \
+  && swift --version
 
 # Add utilities
 COPY .vim /root/.vim
