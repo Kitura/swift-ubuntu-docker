@@ -8,12 +8,13 @@ This repo contains the code for generating two Docker images for Swift:
 - The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.1.1 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
 
 # Recent updates
-1. Upgraded to the Swift 3.1.1 RELEASE binaries.
-2. Reduced number of layers in images.
-3. Removed system packages no longer needed.
-4. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
-5. Reduced size of the Docker image.
-6. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+1. Changed location of Swift files so they can be used by any user (not just `root`).
+2. Upgraded to the Swift 3.1.1 RELEASE binaries.
+3. Reduced number of layers in images.
+4. Removed system packages no longer needed.
+5. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
+6. Reduced size of the Docker image.
+7. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 
 # ibmcom/swift-ubuntu
 ## Pulling ibmcom/swift-ubuntu from Docker Hub
