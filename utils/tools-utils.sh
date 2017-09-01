@@ -55,7 +55,7 @@ function buildProject {
 #----------------------------------------------------------
 function runTests {
   echo "Running tests..."
-  swift test
+  swift test --build-path $BUILD_DIR
 }
 
 #----------------------------------------------------------
