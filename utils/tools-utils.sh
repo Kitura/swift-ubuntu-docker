@@ -49,13 +49,25 @@ function debugServer {
 function buildProject {
   echo "Compiling the project..."
   echo "Build configuration: $BUILD_CONFIGURATION"
-  swift build --configuration $BUILD_CONFIGURATION --build-path $BUILD_DIR
+  if [ -e .swift-build-linux ]; then
+    echo Custom build command: `cat .swift-build-linux`
+    BUILD_CMD=$(cat .swift-build-linux)
+    eval "$BUILD_CMD --configuration $BUILD_CONFIGURATION --build-path $BUILD_DIR"
+  else
+    swift build --configuration $BUILD_CONFIGURATION --build-path $BUILD_DIR
+  fi
 }
 
 #----------------------------------------------------------
 function runTests {
   echo "Running tests..."
-  swift test --build-path $BUILD_DIR
+  if [ -e .swift-test-linux ]; then
+    echo Custom test command: `cat .swift-test-linux`
+    BUILD_CMD=$(cat .swift-test-linux)
+    eval "$BUILD_CMD --build-path $BUILD_DIR"
+  else
+    swift test --build-path $BUILD_DIR
+  fi
 }
 
 #----------------------------------------------------------
