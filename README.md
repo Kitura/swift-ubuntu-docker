@@ -1,6 +1,6 @@
 [![Build Status - Develop](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker.svg?branch=develop)](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker)
 
-# Swift 3 - Ubuntu v14.04 - Docker
+# Swift 4 - Ubuntu v14.04 - Docker
 
 This repo contains the code for generating two Docker images for Swift:
 
