@@ -25,7 +25,7 @@ docker pull ibmcom/swift-ubuntu:latest
 ```
 
 ### Use a specific version of ibmcom/swift-ubuntu
-Docker images are now tagged with Swift version number. To use the Swift 4.0 image from Docker Hub, issue the following command:
+Docker images are tagged with Swift version number. To use the Swift 4.0 image from Docker Hub, issue the following command:
 
 ```
 docker pull ibmcom/swift-ubuntu:4.0
