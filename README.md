@@ -1,15 +1,15 @@
 [![Build Status - Master](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker.svg?branch=master)](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker)
 
-# Swift 3 - Ubuntu v14.04 - Docker
+# Swift 4 - Ubuntu v14.04 - Docker
 
 This repo contains the code for generating two Docker images for Swift:
 
-- The `ibmcom/swift-ubuntu` image contains the Swift 3.1.1 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
-- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 3.1.1 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
+- The `ibmcom/swift-ubuntu` image contains the Swift 4.0 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
+- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 4.0 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
 
 # Recent updates
-1. Changed location of Swift binaries and libraries so they are available system wide (not just for the `root` user).
-2. Upgraded to the Swift 3.1.1 RELEASE binaries.
+1. Upgraded to the Swift 4.0 RELEASE binaries.
+2. Changed location of Swift binaries and libraries so they are available system wide (not just for the `root` user).
 3. Reduced number of layers in images.
 4. Removed system packages no longer needed.
 5. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
@@ -25,17 +25,17 @@ docker pull ibmcom/swift-ubuntu:latest
 ```
 
 ### Use a specific version of ibmcom/swift-ubuntu
-Docker images are now tagged with Swift version number. To use the Swift 3.1.1 image from Docker Hub, issue the following command:
+Docker images are tagged with Swift version number. To use the Swift 4.0 image from Docker Hub, issue the following command:
 
 ```
-docker pull ibmcom/swift-ubuntu:3.1.1
+docker pull ibmcom/swift-ubuntu:4.0
 ```
 
 ## Using ibmcom/swift-ubuntu for development
 Mount a folder on your host to your Docker container using the following command:
 
 ```
-docker run -i -t -v <absolute path to the swift package>:/root/<swift package name> ibmcom/swift-ubuntu:latest
+docker run -i -t -v <absolute path to the swift package>:/root/<swift package name> ibmcom/swift-ubuntu:4.0
 ```
 
 After executing the above command, you will have terminal access to the Docker container (the default command for the image is `/bin/bash`). This will allow you to build, test, and run your Swift application in a Linux environment (Ubuntu v14.04).
@@ -44,7 +44,7 @@ After executing the above command, you will have terminal access to the Docker c
 If you attempt to run the Swift REPL and you get the error `failed to launch REPL process: process launch failed: 'A' packet returned an error: 8`, then you should run your Docker container in privileged mode:
 
 ```
-docker run --privileged -i -t ibmcom/swift-ubuntu:latest
+docker run --privileged -i -t ibmcom/swift-ubuntu:4.0
 ```
 
 This issue is described at https://bugs.swift.org/browse/SR-54.
@@ -58,10 +58,10 @@ docker pull ibmcom/swift-ubuntu-runtime:latest
 ```
 
 ### Use a specific version of ibmcom/swift-ubuntu-runtime
-Docker images are now tagged with Swift version number. To use the Swift 3.1.1 image from Docker Hub, issue the following command:
+Docker images are now tagged with Swift version number. To use the Swift 4.0 image from Docker Hub, issue the following command:
 
 ```
-docker pull ibmcom/swift-ubuntu-runtime:3.1.1
+docker pull ibmcom/swift-ubuntu-runtime:4.0
 ```
 
 ## Using ibmcom/swift-ubuntu-runtime
@@ -72,7 +72,7 @@ You can extend the `ibmcom/swift-ubuntu-runtime` image in your own Dockerfile to
 
 ...
 
-FROM ibmcom/swift-ubuntu-runtime:latest
+FROM ibmcom/swift-ubuntu-runtime:4.0
 LABEL Description="Docker image for running the Kitura-Starter sample application."
 
 USER root
