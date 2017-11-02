@@ -5,7 +5,7 @@
 This repo contains the code for generating two Docker images for Swift:
 
 - The `ibmcom/swift-ubuntu` image contains the Swift 4.0 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 3 applications on the Linux Ubuntu (v14.04) operating system.
-- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 4.0 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on Bluemix.
+- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 4.0 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on the IBM Cloud.
 
 # Recent updates
 1. Upgraded to the Swift 4.0 RELEASE binaries.
@@ -35,7 +35,7 @@ docker pull ibmcom/swift-ubuntu:4.0
 Mount a folder on your host to your Docker container using the following command:
 
 ```
-docker run -i -t -v <absolute path to the swift package>:/root/<swift package name> ibmcom/swift-ubuntu:4.0
+docker run -i -t -v <absolute path to the swift package>:/<swift package name> ibmcom/swift-ubuntu:4.0
 ```
 
 After executing the above command, you will have terminal access to the Docker container (the default command for the image is `/bin/bash`). This will allow you to build, test, and run your Swift application in a Linux environment (Ubuntu v14.04).
@@ -81,10 +81,10 @@ USER root
 EXPOSE 8080
 
 # Binaries should have been compiled against the correct platform (i.e. Ubuntu 14.04).
-RUN mkdir /root/Kitura-Starter
-ADD .build/debug/Kitura-Starter /root/Kitura-Starter
-ADD .build/debug/*.so /root/Kitura-Starter
-CMD [ "sh", "-c", "/root/Kitura-Starter/Kitura-Starter" ]
+RUN mkdir /Kitura-Starter
+ADD .build/debug/Kitura-Starter /Kitura-Starter
+ADD .build/debug/*.so /Kitura-Starter
+CMD [ "sh", "-c", "/Kitura-Starter/Kitura-Starter" ]
 ```
 
 For details on how to create an IBM Container to execute a Swift application, please see [10 Steps To Running a Swift App in an IBM Container](https://developer.ibm.com/swift/2016/02/22/10-steps-to-running-a-swift-app-in-an-ibm-container) and [Running Kitura in an IBM Container](https://developer.ibm.com/swift/2016/03/04/running-kitura-in-an-ibm-container/).
