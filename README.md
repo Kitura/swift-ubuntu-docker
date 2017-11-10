@@ -103,3 +103,7 @@ docker run -p 9080:8080 [additional options] <image name>
 ```
 
 Port `8080` in the container will then be mapped to port `9080` on the host system. For further details on the `-p` option, see the official Docker [documentation](https://docs.docker.com/engine/reference/run/#/expose-incoming-ports).
+
+# Contributing
+
+Improvements are very welcome! You can find more info on contributing in our [contributing guidelines](.github/CONTRIBUTING.md).
