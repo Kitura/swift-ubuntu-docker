@@ -4,11 +4,11 @@
 
 This repo contains the code for generating two Docker images for Swift:
 
-- The `ibmcom/swift-ubuntu` image contains the Swift 4.0.2 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 4 applications on the Linux Ubuntu (v14.04) operating system.
-- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 4.0.2 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on the IBM Cloud.
+- The `ibmcom/swift-ubuntu` image contains the Swift 4.0.3 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 4 applications on the Linux Ubuntu (v14.04) operating system.
+- The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 4.0.3 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on the IBM Cloud.
 
 # Recent updates
-1. Upgraded to the Swift 4.0.2 RELEASE binaries.
+1. Upgraded to the Swift 4.0.3 RELEASE binaries.
 2. Changed location of Swift binaries and libraries so they are available system wide (not just for the `root` user).
 3. Reduced number of layers in images.
 4. Removed system packages no longer needed.
