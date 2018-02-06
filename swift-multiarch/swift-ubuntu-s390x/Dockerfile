@@ -20,10 +20,6 @@ MAINTAINER IBM Swift Engineering at IBM Cloud
 USER root
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-4.0.2-RELEASE
-ENV SWIFT_SNAPSHOT_LOWERCASE swift-4.0.2-release
-ENV UBUNTU_VERSION ubuntu16.04
-ENV UBUNTU_VERSION_NO_DOTS ubuntu1604
 ENV WORK_DIR /
 
 # Set WORKDIR
@@ -38,6 +34,9 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   libicu-dev \
   wget \
   libcurl4-openssl-dev \
+  openssl \
+  libssl-dev \
+  libxml2-dev \
   vim \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -46,14 +45,20 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   && echo "set -o vi" >> /root/.bashrc
 
 # Install Swift compiler
-COPY IBM_TOOLKIT_FOR_SWIFT_V4.0-4.0.2_LINUX_COMMUNITY.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz
-RUN tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz --strip-components=1 \
-  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
-  && chmod -R go+r /usr/lib/swift \
-  && swift --version
+COPY swift-4.0.3-s390x-ub1604-20180205-R.tgz swift-4.0.3-s390x-ub1604-20180205-R.tgz
+COPY binutils-2.27.tar.gz binutils-2.27.tar.gz
+
+RUN tar -xzvf swift-4.0.3-s390x-ub1604-20180205-R.tgz \
+    && tar -xvzf binutils-2.27.tar.gz \
+    && rm swift-4.0.3-s390x-ub1604-20180205-R.tgz \
+    && rm binutils-2.27.tar.gz \
+    && swift --version
+
+# Add gold linker to PATH
+ENV PATH "/opt/binutils-2.27/bin:$PATH"
 
 # Add utilities
-COPY .vim /root/.vim
-COPY .vimrc /root/.vimrc
+#COPY .vim /root/.vim
+#COPY .vimrc /root/.vimrc
 
 CMD /bin/bash
