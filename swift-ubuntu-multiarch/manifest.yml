@@ -1,12 +1,12 @@
-image: awishart/swift-ubuntu:latest
+image: ibmcom/swift-ubuntu-xenial:latest
 manifests:
   -
-    image: awishart/swift-ubuntu-amd64:latest
+    image: ibmcom/swift-ubuntu-amd64:latest
     platform:
       os: linux
       architecture: amd64
   -
-    image: awishart/swift-ubuntu-s390x:latest
+    image: ibmcom/swift-ubuntu-s390x:latest
     platform:
       os: linux
       architecture: s390x

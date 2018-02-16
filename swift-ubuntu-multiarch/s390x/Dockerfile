@@ -45,6 +45,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   && echo "set -o vi" >> /root/.bashrc
 
 # Install Swift compiler
+# This step will only work if you have the necessary binaries in the same folder as this Dockerfile
 COPY swift-4.0.3-s390x-ub1604-20180205-R.tgz swift-4.0.3-s390x-ub1604-20180205-R.tgz
 COPY binutils-2.27.tar.gz binutils-2.27.tar.gz
 

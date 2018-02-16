@@ -17,7 +17,7 @@
 # Dockerfile to build a Docker image with the Swift tools and binaries and
 # its dependencies.
 
-FROM awishart/ubuntu:16.04
+FROM ibmcom/ubuntu:16.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
 LABEL Description="Linux Ubuntu 16.04 image with the Swift binaries and tools."
 
