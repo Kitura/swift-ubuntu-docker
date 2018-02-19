@@ -52,6 +52,6 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
 
   docker push ibmcom/ubuntu:16.04;
   docker push ibmcom/swift-ubuntu-amd64:latest;
-  ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION
-  ./manifest-tool/manifest-tool push from-spec ./swift-ubuntu-xenial-multiarch/manifest.yml
+  docker push ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION;
+  ./manifest-tool/manifest-tool push from-spec ./swift-ubuntu-xenial-multiarch/manifest.yml;
 fi
