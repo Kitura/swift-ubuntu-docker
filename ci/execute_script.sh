@@ -39,8 +39,8 @@ docker tag ibmcom/swift-ubuntu:latest ibmcom/swift-ubuntu:$DEVELOPMENT_VERSION
 docker tag ibmcom/swift-ubuntu-runtime:latest ibmcom/swift-ubuntu-runtime:$RUNTIME_VERSION
 
 docker build --pull -t ibmcom/ubuntu:16.04 ./ubuntu-16.04
-docker build -t ibmcom/swift-ubuntu-amd64:latest ./swift-ubuntu-multiarch/amd64
-docker tag ibmcom/swift-ubuntu-amd64:latest ibmcom/swift-ubuntu-amd64:$DEVELOPMENT_VERSION
+docker build -t ibmcom/swift-ubuntu-xenial-amd64:latest ./swift-ubuntu-xenial-multiarch/amd64
+docker tag ibmcom/swift-ubuntu-amd64:latest ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
@@ -52,6 +52,6 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
 
   docker push ibmcom/ubuntu:16.04;
   docker push ibmcom/swift-ubuntu-amd64:latest;
-  ibmcom/swift-ubuntu-amd64:$DEVELOPMENT_VERSION
-  ./manifest-tool/manifest-tool push from-spec ./swift-ubuntu-multiarch/manifest.yml
+  ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION
+  ./manifest-tool/manifest-tool push from-spec ./swift-ubuntu-xenial-multiarch/manifest.yml
 fi
