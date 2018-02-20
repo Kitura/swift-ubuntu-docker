@@ -30,7 +30,7 @@ RUNTIME_VERSION=${RUNTIME_SNAPSHOT//"$suffix"}
 
 # Manifest-tool used for pushing multi-arch docker images
 git clone https://github.com/estesp/manifest-tool.git
-cd manifest-tool && make build
+make build -f manifest-tool/Makefile
 
 docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu-14.04
 docker build -t ibmcom/swift-ubuntu:latest ./swift-development
