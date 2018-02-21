@@ -1,0 +1,12 @@
+image: ibmcom/swift-ubuntu-xenial-runtime:latest
+manifests:
+  -
+    image: ibmcom/swift-ubuntu-xenial-runtime-amd64:latest
+    platform:
+      os: linux
+      architecture: amd64
+  -
+    image: ibmcom/swift-ubuntu-xenial-runtime-s390x:latest
+    platform:
+      os: linux
+      architecture: s390x

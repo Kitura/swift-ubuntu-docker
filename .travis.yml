@@ -19,6 +19,12 @@ notifications:
 
 sudo: required
 services: docker
+env:
+  global:
+    - SWIFT_SNAPSHOT=swift-4.0.3-RELEASE
+    - SWIFT_SNAPSHOT_LOWERCASE=swift-4.0.3-RELEASE
+    - SWIFT_SNAPSHOT_RUNTIME=swift-4.0.3-RELEASE
+    - SWIFT_SNAPSHOT_RUNTIME_LOWERCASE=swift-4.0.3-release
 
 # after_success failure doesn't fail build: https://github.com/travis-ci/travis-ci/issues/758
 script:
