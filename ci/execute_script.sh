@@ -17,13 +17,15 @@
 
 set -ev
 
-prefix="swift-"
+prefix="ENV SWIFT_SNAPSHOT swift-"
 suffix="-RELEASE"
 
-DEVELOPMENT_SNAPSHOT=${SWIFT_SNAPSHOT//"$prefix"}
+DEVELOPMENT_SNAPSHOT=$(grep "$prefix" swift-development/Dockerfile)
+DEVELOPMENT_SNAPSHOT=${DEVELOPMENT_SNAPSHOT//"$prefix"}
 DEVELOPMENT_VERSION=${DEVELOPMENT_SNAPSHOT//"$suffix"}
 
-RUNTIME_SNAPSHOT=${SWIFT_RUNTIME_SNAPSHOT//"$prefix"}
+RUNTIME_SNAPSHOT=$(grep "$prefix" swift-runtime/Dockerfile)
+RUNTIME_SNAPSHOT=${RUNTIME_SNAPSHOT//"$prefix"}
 RUNTIME_VERSION=${RUNTIME_SNAPSHOT//"$suffix"}
 
 # Manifest-tool used for pushing multi-arch docker images

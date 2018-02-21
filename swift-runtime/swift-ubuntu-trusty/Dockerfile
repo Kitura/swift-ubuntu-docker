@@ -21,6 +21,8 @@ LABEL Description="Linux Ubuntu 14.04 image for execution of Swift applications.
 USER root
 
 # Set environment variables for image
+ENV SWIFT_SNAPSHOT swift-4.0.3-RELEASE
+ENV SWIFT_SNAPSHOT_LOWERCASE swift-4.0.3-release
 ENV UBUNTU_VERSION ubuntu14.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1404
 ENV WORK_DIR /
@@ -34,8 +36,8 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   libcurl4-openssl-dev \
   wget \
   && apt-get clean \
-  && wget -q https://swift.org/builds/$SWIFT_SNAPSHOT_RUNTIME_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT_RUNTIME/$SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz \
-     https://swift.org/builds/$SWIFT_SNAPSHOT_RUNTIME_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT_RUNTIME/$SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz.sig \
+  && wget -q https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+     https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_DOTS/$SWIFT_SNAPSHOT/$SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
   && gpg --keyserver hkp://pool.sks-keyservers.net \
       --recv-keys \
       '7463 A81A 4B2E EA1B 551F  FBCF D441 C977 412B 37AD' \
@@ -44,10 +46,10 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
       '5E4D F843 FB06 5D7F 7E24  FBA2 EF54 30F0 71E1 B235' \
       '8513 444E 2DA3 6B7C 1659  AF4D 7638 F1FB 2B2B 08C4' \
   && gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys  \
-  && gpg --verify $SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz.sig \
-  && tar xzvf $SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION/usr/lib/swift/linux --strip-components=1 \
-  && rm $SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz \
-  && rm $SWIFT_SNAPSHOT_RUNTIME-$UBUNTU_VERSION.tar.gz.sig \
+  && gpg --verify $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
+  && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux --strip-components=1 \
+  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
+  && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
   && find /usr/lib/swift/linux -type f ! -name '*.so' -delete \
   && rm -rf /usr/lib/swift/linux/*/ \
   && chmod -R go+r /usr/lib/swift \
