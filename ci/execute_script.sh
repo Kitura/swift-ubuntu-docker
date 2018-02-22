@@ -17,9 +17,9 @@
 
 set -ev
 
-# Swift version to use in development Dockerfiles.
+# Swift version to use in Development Dockerfiles.
 DEVELOPMENT_VERSION="4.0.3"
-# Swift version to use in runtime Dockerfiles.
+# Swift version to use in Runtime Dockerfiles.
 RUNTIME_VERSION="4.0.3"
 
 # Manifest-tool used for pushing multi-arch docker images
