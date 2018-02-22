@@ -69,7 +69,7 @@ RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_D
   && swift --version
 
 # Add utilities
-COPY ../.vim /root/.vim
-COPY ../.vimrc /root/.vimrc
+COPY .vim /root/.vim
+COPY .vimrc /root/.vimrc
 
 CMD /bin/bash
