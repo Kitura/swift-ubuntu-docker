@@ -24,8 +24,9 @@ LABEL Description="Linux Ubuntu 16.04 image with the Swift binaries and tools."
 USER root
 
 # Set environment variables for image
-ENV SWIFT_SNAPSHOT swift-4.0.3-RELEASE
-ENV SWIFT_SNAPSHOT_LOWERCASE swift-4.0.3-release
+ARG VERSION=${VERSION}
+ENV SWIFT_SNAPSHOT swift-${VERSION}-RELEASE
+ENV SWIFT_SNAPSHOT_LOWERCASE swift-${VERSION}-release
 ENV UBUNTU_VERSION ubuntu16.04
 ENV UBUNTU_VERSION_NO_DOTS ubuntu1604
 ENV WORK_DIR /

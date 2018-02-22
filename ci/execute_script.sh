@@ -17,30 +17,24 @@
 
 set -ev
 
-prefix="ENV SWIFT_SNAPSHOT swift-"
-suffix="-RELEASE"
-
-DEVELOPMENT_SNAPSHOT=$(grep "$prefix" swift-development/Dockerfile)
-DEVELOPMENT_SNAPSHOT=${DEVELOPMENT_SNAPSHOT//"$prefix"}
-DEVELOPMENT_VERSION=${DEVELOPMENT_SNAPSHOT//"$suffix"}
-
-RUNTIME_SNAPSHOT=$(grep "$prefix" swift-runtime/Dockerfile)
-RUNTIME_SNAPSHOT=${RUNTIME_SNAPSHOT//"$prefix"}
-RUNTIME_VERSION=${RUNTIME_SNAPSHOT//"$suffix"}
+# Swift version to use in development Dockerfiles.
+DEVELOPMENT_VERSION="4.0.3"
+# Swift version to use in runtime Dockerfiles.
+RUNTIME_VERSION="4.0.3"
 
 # Manifest-tool used for pushing multi-arch docker images
 git clone https://github.com/estesp/manifest-tool.git
 make build --directory=manifest-tool
 
 docker build --pull -t ibmcom/ubuntu:14.04 ./ubuntu-14.04
-docker build -t ibmcom/swift-ubuntu:latest ./swift-development/swift-ubuntu-trusty
-docker build -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime/swift-ubuntu-trusty
+docker build --build-arg VERSION=${DEVELOPMENT_VERSION} -t ibmcom/swift-ubuntu:latest ./swift-development/swift-ubuntu-trusty
+docker build --build-arg VERSION=${RUNTIME_VERSION} -t ibmcom/swift-ubuntu-runtime:latest ./swift-runtime/swift-ubuntu-trusty
 docker tag ibmcom/swift-ubuntu:latest ibmcom/swift-ubuntu:$DEVELOPMENT_VERSION
 docker tag ibmcom/swift-ubuntu-runtime:latest ibmcom/swift-ubuntu-runtime:$RUNTIME_VERSION
 
 docker build --pull -t ibmcom/ubuntu:16.04 ./ubuntu-16.04
-docker build -t ibmcom/swift-ubuntu-xenial-amd64:latest ./swift-development/swift-ubuntu-xenial-multiarch/amd64
-docker build -t ibmcom/swift-ubuntu-runtime-xenial-amd64:latest ./swift-runtime/swift-ubuntu-xenial-multiarch/amd64
+docker build --build-arg VERSION=${DEVELOPMENT_VERSION} -t ibmcom/swift-ubuntu-xenial-amd64:latest ./swift-development/swift-ubuntu-xenial-multiarch/amd64
+docker build --build-arg VERSION=${RUNTIME_VERSION} -t ibmcom/swift-ubuntu-runtime-xenial-amd64:latest ./swift-runtime/swift-ubuntu-xenial-multiarch/amd64
 docker tag ibmcom/swift-ubuntu-xenial-amd64:latest ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION
 docker tag ibmcom/swift-ubuntu-runtime-xenial-amd64:latest ibmcom/swift-ubuntu-runtime-xenial-amd64:$RUNTIME_VERSION
 
