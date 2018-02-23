@@ -14,7 +14,7 @@
 # limitations under the License.
 ##
 
-FROM s390x/ubuntu
+FROM s390x/ubuntu:16.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
 
 USER root
@@ -29,10 +29,10 @@ WORKDIR ${WORK_DIR}
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   libicu-dev \
   libcurl4-openssl-dev \
+  libedit-dev \
+  libedit2 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.8 100 \
-  && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.8 100 \
   && echo "set -o vi" >> /root/.bashrc
 
 # Install Swift compiler
