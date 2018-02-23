@@ -14,7 +14,7 @@
 # limitations under the License.
 ##
 
-FROM s390x/ubuntu
+FROM FROM s390x/ubuntu:16.04
 MAINTAINER IBM Swift Engineering at IBM Cloud
 
 USER root
