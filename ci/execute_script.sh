@@ -34,9 +34,9 @@ docker tag ibmcom/swift-ubuntu-runtime:latest ibmcom/swift-ubuntu-runtime:$RUNTI
 
 docker build --pull -t ibmcom/ubuntu:16.04 ./ubuntu-16.04
 docker build --build-arg VERSION=${DEVELOPMENT_VERSION} -t ibmcom/swift-ubuntu-xenial-amd64:latest ./swift-development/swift-ubuntu-xenial-multiarch/amd64
-docker build --build-arg VERSION=${RUNTIME_VERSION} -t ibmcom/swift-ubuntu-runtime-xenial-amd64:latest ./swift-runtime/swift-ubuntu-xenial-multiarch/amd64
+docker build --build-arg VERSION=${RUNTIME_VERSION} -t ibmcom/swift-ubuntu-xenial-runtime-amd64:latest ./swift-runtime/swift-ubuntu-xenial-multiarch/amd64
 docker tag ibmcom/swift-ubuntu-xenial-amd64:latest ibmcom/swift-ubuntu-xenial-amd64:$DEVELOPMENT_VERSION
-docker tag ibmcom/swift-ubuntu-runtime-xenial-amd64:latest ibmcom/swift-ubuntu-runtime-xenial-amd64:$RUNTIME_VERSION
+docker tag ibmcom/swift-ubuntu-xenial-runtime-amd64:latest ibmcom/swift-ubuntu-xenial-runtime-amd64:$RUNTIME_VERSION
 
 if [ "$TRAVIS_BRANCH" == "master" ]; then
   docker login -u="$DOCKERHUB_USERNAME" -p="$DOCKERHUB_PASSWORD";
