@@ -17,7 +17,7 @@ This repo contains the code for generating two Docker images for Swift:
 5. Aligned version of Ubuntu with version found in Cloud Foundry environments (v14.04).
 6. Reduced size of the Docker image.
 7. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
-8. Added Support for aml64 and s390x architectures of Xenial Linux Ubuntu 16.04.
+8. Added Support for amd64 and s390x architectures of Xenial Linux Ubuntu 16.04.
 
 # ibmcom/swift-ubuntu
 ## Pulling ibmcom/swift-ubuntu from Docker Hub
