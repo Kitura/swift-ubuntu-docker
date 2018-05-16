@@ -19,6 +19,25 @@ This repo contains the code for generating two Docker images for Swift:
 7. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 8. Added Support for amd64 and s390x architectures of Xenial Linux Ubuntu 16.04.
 
+
+
+# Quick Start
+
+The easiest way to get started is by using the Kitura command line tools to generate the docker files needed, and copy them over to your project:
+
+1. Create a new directory, move into it and run `kitura init`. This will generate a project along with two files named `Dockerfile` and`Dockerfile-tools`. 
+2. Copy `Dockerfile` and `Dockerfile-tools` into your projects root directory (same one that contains the Sources and Tests folders and your `Package.swift` file).
+3. Edit the `Dockerfile` in a text editor to replace references to your `kitura init` test folder with the name of your project.
+4. Run the following commands, replacing YOUR_PROJECT with the name of your project. **Note:** Use all lower case letters for your projects name and replace spaces with dashes.
+   1. `docker build -t YOUR_PROJECT-build -f Dockerfile-tools .`
+   2. `docker run -v $PWD:/root/project -w /root/project YOUR_PROJECT-build /swift-utils/tools-utils.sh build release`
+   3. `docker run -it -p 8090:8080 -v $PWD:/root/project -w /root/project YOUR_PROJECT-run sh -c ".build-ubuntu/release/YOUR_PROJECT"`
+
+The first two lines use a Docker image containing pre-built Swift toolchains, and then builds your project into a second Docker image that utilises the first. This reduces the size of the file you would need to upload to Digital Ocean, as you don't need another copy of the Swift toolchain.
+
+The final command runs your Docker image locally.
+
+
 # ibmcom/swift-ubuntu
 ## Pulling ibmcom/swift-ubuntu from Docker Hub
 Run the following command to download the latest version of the `ibmcom/swift-ubuntu` image from Docker Hub:
