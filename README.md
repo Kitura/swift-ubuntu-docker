@@ -23,9 +23,9 @@ This repo contains the code for generating two Docker images for Swift:
 
 # Quick Start
 
-The easiest way to get started is by using the Kitura command line tools to generate the docker files needed, and copy them over to your project. If you just want to explore our supported base images see the next sections.
+The easiest way to get started is by using the Kitura command line tools to generate the docker files needed, and copy them over to your project. If you just want to explore our supported base images, see the next sections.
 
-To get started with KItura init:
+To get started with `kitura init`:
 
 1. Create a new directory, change into it and run [`kitura init`](https://www.kitura.io/en/starter/gettingstarted.html). This will generate a project which will include two files named `Dockerfile` and `Dockerfile-tools`.
 2. Copy the `Dockerfile` and `Dockerfile-tools` files into your project's root directory (this is the directory that contains your `Package.swift` file and the Sources and Tests folders).
