@@ -19,6 +19,31 @@ This repo contains the code for generating two Docker images for Swift:
 7. Updated Dockerfiles per guidelines in [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
 8. Added Support for amd64 and s390x architectures of Xenial Linux Ubuntu 16.04.
 
+
+
+# Quick Start
+
+The easiest way to get started is by using the Kitura command line tools to generate the docker files needed, and copy them over to your project. If you just want to explore our supported base images, see the next sections.
+
+To get started with `kitura init`:
+
+1. Create a new directory, change into it and run [`kitura init`](https://www.kitura.io/en/starter/gettingstarted.html). This will generate a project which will include two files named `Dockerfile` and `Dockerfile-tools`.
+2. Copy the `Dockerfile` and `Dockerfile-tools` files into your project's root directory (this is the directory that contains your `Package.swift` file and the Sources and Tests folders).
+3. Edit the `Dockerfile` in a text editor and replace references to your `kitura init` folder with the name of your project. `Dockerfile-Tools` has preconfigured behavior to download and compile Swift binaries and copy the executable into your application. It doesn't need editing.
+4. Run the following commands, replacing YOUR_PROJECT with the name of your project. **Note:** Use all lower case letters for your projects name and replace spaces with dashes.
+   1. `docker build -t YOUR_PROJECT-build -f Dockerfile-tools .`
+   2. `docker run -v $PWD:/root/project -w /root/project YOUR_PROJECT-build /swift-utils/tools-utils.sh build release`
+   3. `docker run -it -p 8090:8080 -v $PWD:/root/project -w /root/project YOUR_PROJECT-run sh -c ".build-ubuntu/release/YOUR_PROJECT"`
+
+`Dockerfile-tools` is responsible for downloading the Swift binaries and builds the exectuables.
+
+The `Dockerfile` then copies the applications source code, and then compiled executable into the runtime image of the application. This means the large Swift binary file isn't copied into your application, and reduces the overall size of your app, meaning faster uploads and a smaller storage quota impact.
+
+The final command runs your Docker image locally.
+
+This was the quickest way to get started, but if you just want see explore our base images then see the following sections for detailed instructions.
+
+
 # ibmcom/swift-ubuntu
 ## Pulling ibmcom/swift-ubuntu from Docker Hub
 Run the following command to download the latest version of the `ibmcom/swift-ubuntu` image from Docker Hub:
