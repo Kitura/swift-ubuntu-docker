@@ -63,6 +63,7 @@ RUN wget https://swift.org/builds/$SWIFT_SNAPSHOT_LOWERCASE/$UBUNTU_VERSION_NO_D
       'A3BA FD35 56A5 9079 C068  94BD 63BC 1CFE 91D3 06C6' \
       '5E4D F843 FB06 5D7F 7E24  FBA2 EF54 30F0 71E1 B235' \
       '8513 444E 2DA3 6B7C 1659  AF4D 7638 F1FB 2B2B 08C4' \
+      'A62A E125 BBBF BB96 A6E0  42EC 925C C1CC ED3D 1561' \
   && gpg --keyserver hkp://pool.sks-keyservers.net --refresh-keys  \
   && gpg --verify $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz --strip-components=1 \
