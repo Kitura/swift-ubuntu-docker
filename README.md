@@ -1,10 +1,10 @@
 [![Build Status - Master](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker.svg?branch=master)](https://travis-ci.org/IBM-Swift/swift-ubuntu-docker)
 
-# Swift 4 - Ubuntu Docker
+# Swift 5 - Ubuntu Docker
 
 This repo contains the code for generating two Docker images for Swift:
 
-- The `ibmcom/swift-ubuntu` image contains the Swift 5.0 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 4 applications on the Linux Ubuntu (v14.04) operating system.
+- The `ibmcom/swift-ubuntu` image contains the Swift 5.0 RELEASE toolchain as well as the dependencies for running Kitura-based applications. Our development team uses this image for development and testing of Swift 5 applications on the Linux Ubuntu (v14.04) operating system.
 - The `ibmcom/swift-ubuntu-runtime` image contains only those libraries (`.so` files) provided by the Swift 5.0 RELEASE toolchain that are required to run Swift applications. Note that this image does not contain SwiftPM or any of the build tools used when compiling and linking Swift applications. Hence, the size for the `ibmcom/swift-ubuntu-runtime` image (~300 MB) is much smaller than that of the `ibmcom/swift-ubuntu` image. The `ibmcom/swift-ubuntu-runtime` image is ideal for provisioning your Swift application as an [IBM Container](https://www.ibm.com/cloud-computing/bluemix/containers) on the IBM Cloud.
 
 - The `ibmcom/swift-ubuntu-xenial` and `ibmcom/swift-ubuntu-xenial-runtime` images follow a similar convention, but for Linux Ubuntu 16.04. These images are multi-arch so will pull down the appropriate image for your architecture. We currently offer support for `amd64` and `s390x` architectures.
