@@ -139,6 +139,7 @@ EXPOSE 8080
 RUN mkdir /Kitura-Starter
 ADD .build/debug/Kitura-Starter /Kitura-Starter
 ADD .build/debug/*.so /Kitura-Starter
+ADD .build/debug/*.so.* /Kitura-Starter
 CMD [ "sh", "-c", "/Kitura-Starter/Kitura-Starter" ]
 ```
 

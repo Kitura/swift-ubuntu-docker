@@ -1,5 +1,5 @@
 ##
-# Copyright IBM Corporation 2016,2017
+# Copyright IBM Corporation 2016, 2019
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y \
   && tar xzvf $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz $SWIFT_SNAPSHOT-$UBUNTU_VERSION/usr/lib/swift/linux --strip-components=1 \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz \
   && rm $SWIFT_SNAPSHOT-$UBUNTU_VERSION.tar.gz.sig \
-  && find /usr/lib/swift/linux -type f ! -name '*.so' -delete \
+  && find /usr/lib/swift/linux -type f ! -name '*.so*' -delete \
   && rm -rf /usr/lib/swift/linux/*/ \
   && chmod -R go+r /usr/lib/swift \
   && apt-get remove -y gcc cpp sgml-base icu-devtools gcc-4.8 cpp-4.8 libc6-dev binutils manpages-dev manpages wget pkg-config perl \
