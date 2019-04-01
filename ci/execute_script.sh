@@ -18,9 +18,9 @@
 set -ev
 
 # Swift version to use in Development Dockerfiles.
-DEVELOPMENT_VERSION="5.0"
+DEVELOPMENT_VERSION="4.2.4"
 # Swift version to use in Runtime Dockerfiles.
-RUNTIME_VERSION="5.0"
+RUNTIME_VERSION="4.2.4"
 
 # Manifest-tool used for pushing multi-arch docker images
 git clone https://github.com/estesp/manifest-tool.git --branch v0.9.0
