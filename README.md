@@ -27,7 +27,7 @@ The easiest way to get started is by using the Kitura command line tools to gene
 
 To get started with `kitura init`:
 
-1. Create a new directory, change into it and run [`kitura init`](https://www.kitura.io/en/starter/gettingstarted.html). This will generate a project which will include two files named `Dockerfile` and `Dockerfile-tools`.
+1. Create a new directory, change into it and run [`kitura init`](https://www.kitura.io/docs/getting-started/create-server-cli.html#). This will generate a project which will include two files named `Dockerfile` and `Dockerfile-tools`.
 2. Copy the `Dockerfile` and `Dockerfile-tools` files into your project's root directory (this is the directory that contains your `Package.swift` file and the Sources and Tests folders).
 3. Edit the `Dockerfile` in a text editor and replace references to your `kitura init` folder with the name of your project. `Dockerfile-Tools` has preconfigured behavior to download and compile Swift binaries and copy the executable into your application. It doesn't need editing.
 4. Run the following commands, replacing YOUR_PROJECT with the name of your project. **Note:** Use all lower case letters for your projects name and replace spaces with dashes.
